@@ -2,18 +2,21 @@ package Users;
 
 import java.util.List;
 
+import javax.swing.DefaultListModel;
+
 public class Paciente {
 	private String nombre;
 	private String apellido;
 	private String usuario;
 	private String correo;
 	private String contrasenia;
-	private List<String> alergias;
-	private List<String> diagnosticos;
-	private List<String> tratamientos;
-	private List<String> medicamentos;
+    private DefaultListModel<String> alergias;
+    private DefaultListModel<String> diagnosticos;
+    private DefaultListModel<String> tratamientos;
+    private DefaultListModel<String> medicamentos;
+
 	
-	public Paciente(String nombre, String apellido, String usuario, String correo, String contrasenia, List<String> alergias, List<String> diagnosticos, List<String> tratamientos, List<String> medicamentos) {
+	public Paciente(String nombre, String apellido, String usuario, String correo, String contrasenia, DefaultListModel<String> alergias, DefaultListModel<String> diagnosticos, DefaultListModel<String> tratamientos, DefaultListModel<String> medicamentos) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.usuario = usuario;
@@ -54,28 +57,28 @@ public class Paciente {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-	public List<String> getAlergias() {
+	public DefaultListModel<String> getAlergias() {
 		return alergias;
 	}
-	public void setAlergias(List<String> alergias) {
+	public void setAlergias(DefaultListModel<String> alergias) {
 		this.alergias = alergias;
 	}
-	public List<String> getDiagnosticos() {
+	public DefaultListModel<String> getDiagnosticos() {
 		return diagnosticos;
 	}
-	public void setDiagnosticos(List<String> diagnosticos) {
+	public void setDiagnosticos(DefaultListModel<String> diagnosticos) {
 		this.diagnosticos = diagnosticos;
 	}
-	public List<String> getTratamientos() {
+	public DefaultListModel<String> getTratamientos() {
 		return tratamientos;
 	}
-	public void setTratamientos(List<String> tratamientos) {
+	public void setTratamientos(DefaultListModel<String> tratamientos) {
 		this.tratamientos = tratamientos;
 	}
-	public List<String> getMedicamentos() {
+	public DefaultListModel<String> getMedicamentos() {
 		return medicamentos;
 	}
-	public void setMedicamentos(List<String> medicamentos) {
+	public void setMedicamentos(DefaultListModel<String> medicamentos) {
 		this.medicamentos = medicamentos;
 	}
 	

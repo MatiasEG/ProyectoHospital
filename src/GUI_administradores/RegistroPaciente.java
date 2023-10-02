@@ -12,8 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import Users.Medico;
+import Users.Paciente;
+
 import java.awt.BorderLayout;
 import javax.swing.JList;
 
@@ -59,6 +64,7 @@ public class RegistroPaciente extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	//TODO comment this main
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -158,6 +164,10 @@ public class RegistroPaciente extends JFrame {
             		if(correoValido()) {
             			if(campo_contrasenia.getText().equals(campo_confirme_contrasenia.getText())) {
                     		JOptionPane.showMessageDialog(null, "Paciente registrado exitosamente!");
+                    		Paciente paciente = 
+                    				new Paciente(campo_nombre.getText(), campo_apellido.getText(), campo_usuario.getText(), campo_correo.getText(), campo_contrasenia.getText(),
+                    						listModelAlergias, listModelDiagnosticos, listModelTratamientos, listModelMedicamentos);
+                    		Main.agregarPaciente(paciente);
         					RegistroPaciente.this.dispose();
             			}else {
                     		JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");
@@ -181,9 +191,6 @@ public class RegistroPaciente extends JFrame {
 		campo_alergia.setColumns(10);
 		
 		listModelAlergias = new DefaultListModel<>();
-		lista_alergias = new JList<>(listModelAlergias);
-		lista_alergias.setBounds(0, 20, 187, 80);
-		panel_alergias.add(lista_alergias);
 		
 		btn_agregarAlergia = new JButton("Agregar");
 		btn_agregarAlergia.setBounds(0, 100, 89, 23);
@@ -210,6 +217,12 @@ public class RegistroPaciente extends JFrame {
         });
 		panel_alergias.add(btn_eliminarAlergia);
 		
+		JScrollPane scrollPane_alergias = new JScrollPane();
+		scrollPane_alergias.setBounds(0, 22, 187, 78);
+		panel_alergias.add(scrollPane_alergias);
+		lista_alergias = new JList<>(listModelAlergias);
+		scrollPane_alergias.setViewportView(lista_alergias);
+		
 		label_alergias = new JLabel("Alergias");
 		label_alergias.setBounds(23, 158, 187, 14);
 		contentPane.add(label_alergias);
@@ -229,9 +242,6 @@ public class RegistroPaciente extends JFrame {
 		panel_alergias_1.add(campo_Tratamiento);
 		
         listModelTratamientos = new DefaultListModel<>();
-		lista_tratamientos = new JList<>(listModelTratamientos);
-		lista_tratamientos.setBounds(0, 20, 187, 80);
-		panel_alergias_1.add(lista_tratamientos);
 		
 		btn_agregarTratamiento = new JButton("Agregar");
 		btn_agregarTratamiento.setBounds(0, 100, 89, 23);
@@ -258,6 +268,12 @@ public class RegistroPaciente extends JFrame {
         });
 		panel_alergias_1.add(btn_eliminarTratamiento);
 		
+		JScrollPane scrollPane_tratamientos = new JScrollPane();
+		scrollPane_tratamientos.setBounds(0, 21, 187, 78);
+		panel_alergias_1.add(scrollPane_tratamientos);
+		lista_tratamientos = new JList<>(listModelTratamientos);
+		scrollPane_tratamientos.setViewportView(lista_tratamientos);
+		
 		label_diagnosticos = new JLabel("Diagnosticos");
 		label_diagnosticos.setBounds(220, 158, 187, 14);
 		contentPane.add(label_diagnosticos);
@@ -273,9 +289,6 @@ public class RegistroPaciente extends JFrame {
 		panel_alergias_2.add(campo_diagnostico);
 		
         listModelDiagnosticos = new DefaultListModel<>();
-		lista_diagnosticos = new JList<>(listModelDiagnosticos);
-		lista_diagnosticos.setBounds(0, 20, 187, 80);
-		panel_alergias_2.add(lista_diagnosticos);
 		
 		btn_agregarDiagnostico = new JButton("Agregar");
 		btn_agregarDiagnostico.setBounds(0, 100, 89, 23);
@@ -302,6 +315,12 @@ public class RegistroPaciente extends JFrame {
         });
 		panel_alergias_2.add(btn_eliminarDiagnostico);
 		
+		JScrollPane scrollPane_diagnosticos = new JScrollPane();
+		scrollPane_diagnosticos.setBounds(0, 21, 187, 78);
+		panel_alergias_2.add(scrollPane_diagnosticos);
+		lista_diagnosticos = new JList<>(listModelDiagnosticos);
+		scrollPane_diagnosticos.setViewportView(lista_diagnosticos);
+		
 		label_medicamentos = new JLabel("Medicamentos");
 		label_medicamentos.setBounds(220, 305, 187, 14);
 		contentPane.add(label_medicamentos);
@@ -317,9 +336,6 @@ public class RegistroPaciente extends JFrame {
 		panel_alergias_3.add(campo_medicamento);
 		
         listModelMedicamentos = new DefaultListModel<>();
-		lista_medicamentos = new JList<>(listModelMedicamentos);
-		lista_medicamentos.setBounds(0, 20, 187, 80);
-		panel_alergias_3.add(lista_medicamentos);
 		
 		btn_agregarMedicamento = new JButton("Agregar");
 		btn_agregarMedicamento.setBounds(0, 100, 89, 23);
@@ -345,6 +361,12 @@ public class RegistroPaciente extends JFrame {
             }
         });
 		panel_alergias_3.add(btn_eliminarMedicamento);
+		
+		JScrollPane scrollPane_medicamentos = new JScrollPane();
+		scrollPane_medicamentos.setBounds(0, 21, 187, 78);
+		panel_alergias_3.add(scrollPane_medicamentos);
+		lista_medicamentos = new JList<>(listModelMedicamentos);
+		scrollPane_medicamentos.setViewportView(lista_medicamentos);
 		
 		
 		

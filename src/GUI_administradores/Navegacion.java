@@ -12,14 +12,17 @@ import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import javax.swing.JList;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 public class Navegacion extends JFrame {
 
 	private JPanel contentPane;
+	private JList list_medicos;
 
 	/**
 	 * Launch the application.
 	 */
+	//TODO comment this main
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -79,11 +82,27 @@ public class Navegacion extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JList list_medicos = new JList(Main.listaMedicos());
-		panel.add(list_medicos, BorderLayout.CENTER);
-		
 		JButton btn_editarMedico = new JButton("Editar datos");
+		btn_editarMedico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = list_medicos.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	try {
+    					ModificarMedico frame = new ModificarMedico(Main.listaMedicos().get(selectedIndex));
+    					frame.setVisible(true);
+    				} catch (Exception e1) {
+    					e1.printStackTrace();
+    				}
+                }
+            }
+        });
 		panel.add(btn_editarMedico, BorderLayout.SOUTH);
+		
+		JScrollPane scrollPane_medicos = new JScrollPane();
+		panel.add(scrollPane_medicos, BorderLayout.CENTER);
+		
+		list_medicos = new JList(Main.listaMedicos());
+		scrollPane_medicos.setViewportView(list_medicos);
 		
 		JLabel label_medicosRegistrados = new JLabel("Medicos registrados");
 		label_medicosRegistrados.setBounds(10, 45, 150, 14);
@@ -98,10 +117,13 @@ public class Navegacion extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JList list_pacientes = new JList<>(Main.listaPacientes());
-		panel_1.add(list_pacientes, BorderLayout.CENTER);
-		
 		JButton btn_editarPaciente = new JButton("Editar datos");
 		panel_1.add(btn_editarPaciente, BorderLayout.SOUTH);
+		
+		JScrollPane scrollPane_pacientes = new JScrollPane();
+		panel_1.add(scrollPane_pacientes, BorderLayout.CENTER);
+		
+		JList list_pacientes = new JList<>(Main.listaPacientes());
+		scrollPane_pacientes.setViewportView(list_pacientes);
 	}
 }
