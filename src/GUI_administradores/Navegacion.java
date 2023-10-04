@@ -18,6 +18,7 @@ public class Navegacion extends JFrame {
 
 	private JPanel contentPane;
 	private JList list_medicos;
+	private JList list_pacientes;
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,7 @@ public class Navegacion extends JFrame {
 	public Navegacion() {
 		setTitle("Navegacion (admin)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 260);
+		setBounds(100, 100, 350, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -78,11 +79,11 @@ public class Navegacion extends JFrame {
 		contentPane.add(btn_registroPaciente);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 70, 150, 144);
+		panel.setBounds(10, 70, 150, 180);
 		contentPane.add(panel);
-		panel.setLayout(new BorderLayout(0, 0));
 		
 		JButton btn_editarMedico = new JButton("Editar datos");
+		btn_editarMedico.setBounds(0, 132, 150, 23);
 		btn_editarMedico.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_medicos.getSelectedIndex();
@@ -96,13 +97,27 @@ public class Navegacion extends JFrame {
                 }
             }
         });
-		panel.add(btn_editarMedico, BorderLayout.SOUTH);
+		panel.setLayout(null);
+		panel.add(btn_editarMedico);
 		
 		JScrollPane scrollPane_medicos = new JScrollPane();
-		panel.add(scrollPane_medicos, BorderLayout.CENTER);
+		scrollPane_medicos.setBounds(0, 0, 150, 130);
+		panel.add(scrollPane_medicos);
 		
-		list_medicos = new JList(Main.listaMedicos());
+		list_medicos = new JList<>(Main.listaMedicos());
 		scrollPane_medicos.setViewportView(list_medicos);
+		
+		JButton btn_eliminarMedico = new JButton("Eliminar");
+		btn_eliminarMedico.setBounds(0, 157, 150, 23);
+		btn_eliminarMedico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = list_medicos.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	Main.eliminarMedico(selectedIndex);
+                }
+            }
+        });
+		panel.add(btn_eliminarMedico);
 		
 		JLabel label_medicosRegistrados = new JLabel("Medicos registrados");
 		label_medicosRegistrados.setBounds(10, 45, 150, 14);
@@ -113,17 +128,31 @@ public class Navegacion extends JFrame {
 		contentPane.add(label_pacientesRegistrados);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(174, 70, 150, 144);
+		panel_1.setBounds(174, 70, 150, 180);
 		contentPane.add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		panel_1.setLayout(null);
 		
 		JButton btn_editarPaciente = new JButton("Editar datos");
-		panel_1.add(btn_editarPaciente, BorderLayout.SOUTH);
+		btn_editarPaciente.setBounds(0, 132, 150, 23);
+		panel_1.add(btn_editarPaciente);
 		
 		JScrollPane scrollPane_pacientes = new JScrollPane();
-		panel_1.add(scrollPane_pacientes, BorderLayout.CENTER);
+		scrollPane_pacientes.setBounds(0, 0, 150, 130);
+		panel_1.add(scrollPane_pacientes);
 		
-		JList list_pacientes = new JList<>(Main.listaPacientes());
+		list_pacientes = new JList<>(Main.listaPacientes());
 		scrollPane_pacientes.setViewportView(list_pacientes);
+		
+		JButton btn_eliminarPaciente = new JButton("Eliminar");
+		btn_eliminarPaciente.setBounds(0, 157, 150, 23);
+		btn_eliminarPaciente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = list_pacientes.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	Main.eliminarPaciente(selectedIndex);
+                }
+            }
+        });
+		panel_1.add(btn_eliminarPaciente);
 	}
 }

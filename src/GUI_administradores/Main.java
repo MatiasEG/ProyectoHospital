@@ -34,12 +34,20 @@ public class Main{
         medicos.add(0,medico);
     }
 	
+	public static void eliminarMedico(int index) {
+        medicos.remove(index);
+    }
+	
 	public static DefaultListModel<Medico> listaMedicos() {
         return medicos;
     }
 	
 	public static void agregarPaciente(Paciente paciente) {
         pacientes.add(0,paciente);
+    }
+	
+	public static void eliminarPaciente(int index) {
+        pacientes.remove(index);
     }
 	
 	public static DefaultListModel<Paciente> listaPacientes() {
