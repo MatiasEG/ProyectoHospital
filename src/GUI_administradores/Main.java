@@ -18,8 +18,8 @@ public class Main{
 		medicos = new DefaultListModel<>();
 		pacientes = new DefaultListModel<>();
 		
-		//TODO agregar medicos hardcodeados
-		//TODO agregar pacientes hardcodeados
+		//TODO agregar medicos hardcodeados usando .addElement()
+		//TODO agregar pacientes hardcodeados usando .addElement()
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
