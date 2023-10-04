@@ -58,6 +58,7 @@ public class ModificarPaciente extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	//TODO comment this main
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
