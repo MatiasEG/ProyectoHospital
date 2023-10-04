@@ -134,7 +134,7 @@ public class ModificarMedico extends JFrame {
             				JOptionPane.showMessageDialog(null, "El correo no es valido.");
             			}
             		}else{
-        				JOptionPane.showMessageDialog(null, "No se realizaron cambios.");
+        				JOptionPane.showMessageDialog(null, "No se realizaron cambios para guardar.");
             		}
             	}
             }

@@ -56,4 +56,12 @@ public class Main{
 	public static DefaultListModel<Paciente> listaPacientes() {
         return pacientes;
     }
+	
+	public static DefaultListModel<String> copyList(DefaultListModel<String> originalList) {
+		DefaultListModel<String> newList = new DefaultListModel<>();
+		for(int i=0; i<originalList.size(); i++) {
+			newList.addElement(originalList.getElementAt(i));
+		}
+		return newList;
+	}
 }

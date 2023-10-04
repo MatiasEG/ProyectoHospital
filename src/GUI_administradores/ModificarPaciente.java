@@ -1,4 +1,5 @@
 package GUI_administradores;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,18 +10,16 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Users.Paciente;
 
-import javax.swing.JList;
-
-public class RegistroPaciente extends JFrame {
+public class ModificarPaciente extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel_alergias;
@@ -28,8 +27,6 @@ public class RegistroPaciente extends JFrame {
 	private JTextField campo_apellido;
 	private JTextField campo_usuario;
 	private JTextField campo_correo;
-	private JTextField campo_contrasenia;
-	private JTextField campo_confirme_contrasenia;
 	private JTextField campo_alergia;
 	private JLabel label_alergias;
 	private JList lista_alergias;
@@ -58,16 +55,24 @@ public class RegistroPaciente extends JFrame {
     private JButton btn_agregarMedicamento;
     private JButton btn_eliminarMedicamento;
 
-
 	/**
 	 * Launch the application.
 	 */
-	//TODO comment this main
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegistroPaciente frame = new RegistroPaciente();
+					DefaultListModel<String> alergias = new DefaultListModel<>();
+					alergias.addElement("polen");
+					DefaultListModel<String> diagnosticos = new DefaultListModel<>();
+					diagnosticos.addElement("menso");
+					DefaultListModel<String> tratamientos = new DefaultListModel<>();
+					tratamientos.addElement("jugar 8hrsxdia");
+					DefaultListModel<String> medicamentos = new DefaultListModel<>();
+					medicamentos.addElement("asado");
+					medicamentos.addElement("coca");
+					
+					ModificarPaciente frame = new ModificarPaciente(new Paciente("Pepe", "Segundo", "user_aps", "mail@mail.com", "pass", alergias, diagnosticos, tratamientos, medicamentos));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -79,10 +84,15 @@ public class RegistroPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegistroPaciente() {		
+	public ModificarPaciente(Paciente paciente) {
+		DefaultListModel<String> alergiasAux = Main.copyList(paciente.getAlergias());
+		DefaultListModel<String> diagnosticosAux = Main.copyList(paciente.getDiagnosticos());
+		DefaultListModel<String> tratamientosAux = Main.copyList(paciente.getTratamientos());
+		DefaultListModel<String> medicamentosAux = Main.copyList(paciente.getMedicamentos());
+		
 		setTitle("Registro Paciente");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 525);
+		setBounds(100, 100, 450, 485);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -91,11 +101,15 @@ public class RegistroPaciente extends JFrame {
 		
 		campo_nombre = new JTextField();
 		campo_nombre.setBounds(23, 39, 187, 20);
+		campo_nombre.setText(paciente.getNombre());
+		campo_nombre.setEditable(false);
 		contentPane.add(campo_nombre);
 		campo_nombre.setColumns(10);
 		
 		campo_apellido = new JTextField();
 		campo_apellido.setBounds(220, 39, 187, 20);
+		campo_apellido.setText(paciente.getApellido());
+		campo_apellido.setEditable(false);
 		contentPane.add(campo_apellido);
 		campo_apellido.setColumns(10);
 		
@@ -113,11 +127,13 @@ public class RegistroPaciente extends JFrame {
 		
 		campo_usuario = new JTextField();
 		campo_usuario.setColumns(10);
+		campo_usuario.setText(paciente.getUsuario());
 		campo_usuario.setBounds(23, 83, 187, 20);
 		contentPane.add(campo_usuario);
 		
 		campo_correo = new JTextField();
 		campo_correo.setColumns(10);
+		campo_correo.setText(paciente.getCorreo());
 		campo_correo.setBounds(220, 83, 187, 20);
 		contentPane.add(campo_correo);
 		
@@ -125,61 +141,45 @@ public class RegistroPaciente extends JFrame {
 		label_correo.setBounds(220, 70, 187, 14);
 		contentPane.add(label_correo);
 		
-		JLabel label_contrasenia = new JLabel("Constraseña");
-		label_contrasenia.setBounds(23, 114, 187, 14);
-		contentPane.add(label_contrasenia);
-		
-		campo_contrasenia = new JPasswordField();
-		campo_contrasenia.setColumns(10);
-		campo_contrasenia.setBounds(23, 127, 187, 20);
-		contentPane.add(campo_contrasenia);
-		
-		JLabel label_confirme_contrasenia = new JLabel("Confirme constraseña");
-		label_confirme_contrasenia.setBounds(220, 114, 187, 14);
-		contentPane.add(label_confirme_contrasenia);
-		
-		campo_confirme_contrasenia = new JPasswordField();
-		campo_confirme_contrasenia.setColumns(10);
-		campo_confirme_contrasenia.setBounds(220, 127, 187, 20);
-		contentPane.add(campo_confirme_contrasenia);
-		
 		JButton btn_cancelar = new JButton("Cancelar");
-		btn_cancelar.setBounds(318, 452, 89, 23);
+		btn_cancelar.setBounds(318, 408, 89, 23);
 		btn_cancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	RegistroPaciente.this.dispose();
+            	ModificarPaciente.this.dispose();
             }
         });
 		contentPane.add(btn_cancelar);
 		
-		JButton btn_aceptar = new JButton("Aceptar");
-		btn_aceptar.setBounds(220, 452, 89, 23);
-		btn_aceptar.addActionListener(new ActionListener() {
+		JButton btn_guardar = new JButton("Guardar");
+		btn_guardar.setBounds(220, 408, 89, 23);
+		btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(faltaCampoObligatorio()) {
-            		JOptionPane.showMessageDialog(null, "Asegurese de completar todos los datos correctamente.");
-            	}else {
-            		if(correoValido()) {
-            			if(campo_contrasenia.getText().equals(campo_confirme_contrasenia.getText())) {
-                    		JOptionPane.showMessageDialog(null, "Paciente registrado exitosamente!");
-                    		Paciente paciente = 
-                    				new Paciente(campo_nombre.getText(), campo_apellido.getText(), campo_usuario.getText(), campo_correo.getText(), campo_contrasenia.getText(),
-                    						listModelAlergias, listModelDiagnosticos, listModelTratamientos, listModelMedicamentos);
-                    		Main.agregarPaciente(paciente);
-        					RegistroPaciente.this.dispose();
-            			}else {
-                    		JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");
-            			}
+            	if(!campo_usuario.getText().equals(paciente.getUsuario()) || !campo_correo.getText().equals(paciente.getCorreo()) ||
+            			!alergiasAux.equals(paciente.getAlergias()) || !diagnosticosAux.equals(paciente.getDiagnosticos()) ||
+            			!tratamientosAux.equals(paciente.getTratamientos()) || !medicamentosAux.equals(paciente.getMedicamentos())) {
+
+            		if(correoValido(campo_correo.getText())) {
+            			paciente.setUsuario(campo_usuario.getText());
+        				paciente.setCorreo(campo_correo.getText());
+        				paciente.setAlergias(alergiasAux);
+        				paciente.setDiagnosticos(diagnosticosAux);
+        				paciente.setTratamientos(tratamientosAux);
+        				paciente.setMedicamentos(medicamentosAux);
+        				JOptionPane.showMessageDialog(null, "Los datos del paciente se han actualizado correctamente.");
+        				ModificarPaciente.this.dispose();
             		}else {
-                		JOptionPane.showMessageDialog(null, "El correo electronico no es valido.");
+            			JOptionPane.showMessageDialog(null, "El correo no es valido.");
             		}
+            		
+            	}else{
+        			JOptionPane.showMessageDialog(null, "No se realizaron cambios para guardar.");
             	}
             }
         });
-		contentPane.add(btn_aceptar);
+		contentPane.add(btn_guardar);
 		
 		panel_alergias = new JPanel();
-		panel_alergias.setBounds(23, 171, 187, 123);
+		panel_alergias.setBounds(23, 127, 187, 123);
 		contentPane.add(panel_alergias);
 		panel_alergias.setLayout(null);
 		
@@ -188,7 +188,7 @@ public class RegistroPaciente extends JFrame {
 		panel_alergias.add(campo_alergia);
 		campo_alergia.setColumns(10);
 		
-		listModelAlergias = new DefaultListModel<>();
+		listModelAlergias = alergiasAux;
 		
 		btn_agregarAlergia = new JButton("Agregar");
 		btn_agregarAlergia.setBounds(0, 100, 89, 23);
@@ -222,16 +222,16 @@ public class RegistroPaciente extends JFrame {
 		scrollPane_alergias.setViewportView(lista_alergias);
 		
 		label_alergias = new JLabel("Alergias");
-		label_alergias.setBounds(23, 158, 187, 14);
+		label_alergias.setBounds(23, 114, 187, 14);
 		contentPane.add(label_alergias);
 		
 		label_tratamientos = new JLabel("Tratamientos");
-		label_tratamientos.setBounds(23, 305, 187, 14);
+		label_tratamientos.setBounds(23, 261, 187, 14);
 		contentPane.add(label_tratamientos);
 		
 		panel_alergias_1 = new JPanel();
 		panel_alergias_1.setLayout(null);
-		panel_alergias_1.setBounds(23, 318, 187, 123);
+		panel_alergias_1.setBounds(23, 274, 187, 123);
 		contentPane.add(panel_alergias_1);
 		
 		campo_Tratamiento = new JTextField();
@@ -239,7 +239,7 @@ public class RegistroPaciente extends JFrame {
 		campo_Tratamiento.setBounds(0, 0, 187, 20);
 		panel_alergias_1.add(campo_Tratamiento);
 		
-        listModelTratamientos = new DefaultListModel<>();
+        listModelTratamientos = tratamientosAux;
 		
 		btn_agregarTratamiento = new JButton("Agregar");
 		btn_agregarTratamiento.setBounds(0, 100, 89, 23);
@@ -269,16 +269,16 @@ public class RegistroPaciente extends JFrame {
 		JScrollPane scrollPane_tratamientos = new JScrollPane();
 		scrollPane_tratamientos.setBounds(0, 21, 187, 78);
 		panel_alergias_1.add(scrollPane_tratamientos);
-		lista_tratamientos = new JList<>(listModelTratamientos);
+		lista_tratamientos = new JList<>(paciente.getTratamientos());
 		scrollPane_tratamientos.setViewportView(lista_tratamientos);
 		
 		label_diagnosticos = new JLabel("Diagnosticos");
-		label_diagnosticos.setBounds(220, 158, 187, 14);
+		label_diagnosticos.setBounds(220, 114, 187, 14);
 		contentPane.add(label_diagnosticos);
 		
 		panel_alergias_2 = new JPanel();
 		panel_alergias_2.setLayout(null);
-		panel_alergias_2.setBounds(220, 171, 187, 123);
+		panel_alergias_2.setBounds(220, 127, 187, 123);
 		contentPane.add(panel_alergias_2);
 		
 		campo_diagnostico = new JTextField();
@@ -286,7 +286,7 @@ public class RegistroPaciente extends JFrame {
 		campo_diagnostico.setBounds(0, 0, 187, 20);
 		panel_alergias_2.add(campo_diagnostico);
 		
-        listModelDiagnosticos = new DefaultListModel<>();
+        listModelDiagnosticos = diagnosticosAux;
 		
 		btn_agregarDiagnostico = new JButton("Agregar");
 		btn_agregarDiagnostico.setBounds(0, 100, 89, 23);
@@ -320,12 +320,12 @@ public class RegistroPaciente extends JFrame {
 		scrollPane_diagnosticos.setViewportView(lista_diagnosticos);
 		
 		label_medicamentos = new JLabel("Medicamentos");
-		label_medicamentos.setBounds(220, 305, 187, 14);
+		label_medicamentos.setBounds(220, 261, 187, 14);
 		contentPane.add(label_medicamentos);
 		
 		panel_alergias_3 = new JPanel();
 		panel_alergias_3.setLayout(null);
-		panel_alergias_3.setBounds(220, 318, 187, 123);
+		panel_alergias_3.setBounds(220, 274, 187, 123);
 		contentPane.add(panel_alergias_3);
 		
 		campo_medicamento = new JTextField();
@@ -333,7 +333,7 @@ public class RegistroPaciente extends JFrame {
 		campo_medicamento.setBounds(0, 0, 187, 20);
 		panel_alergias_3.add(campo_medicamento);
 		
-        listModelMedicamentos = new DefaultListModel<>();
+        listModelMedicamentos = medicamentosAux;
 		
 		btn_agregarMedicamento = new JButton("Agregar");
 		btn_agregarMedicamento.setBounds(0, 100, 89, 23);
@@ -370,18 +370,12 @@ public class RegistroPaciente extends JFrame {
 		
 	}
 	
-	// Funcion para ver si algun campo de texto obigatorio esta vacio
-	private boolean faltaCampoObligatorio() {
-		return campo_nombre.getText().equals("") || campo_apellido.getText().equals("") || campo_usuario.getText().equals("")
-    			|| campo_correo.getText().equals("") || campo_contrasenia.getText().equals("") || campo_confirme_contrasenia.getText().equals("");
-	}
-	
 	// Función para validar el formato de un correo electrónico utilizando una expresión regular
-    private boolean correoValido() {
-    	String correo = campo_correo.getText();
+    private boolean correoValido(String correo) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(correo);
         return matcher.matches();
     }
+
 }

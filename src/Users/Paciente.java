@@ -24,6 +24,7 @@ public class Paciente {
 		this.contrasenia = contrasenia;
 		this.alergias = alergias;
 		this.diagnosticos = diagnosticos;
+		this.tratamientos = tratamientos;
 		this.medicamentos = medicamentos;
 	}
 	
