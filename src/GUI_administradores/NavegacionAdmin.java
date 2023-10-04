@@ -14,7 +14,7 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
-public class Navegacion extends JFrame {
+public class NavegacionAdmin extends JFrame {
 
 	private JPanel contentPane;
 	private JList list_medicos;
@@ -28,7 +28,7 @@ public class Navegacion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Navegacion frame = new Navegacion();
+					NavegacionAdmin frame = new NavegacionAdmin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class Navegacion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Navegacion() {
+	public NavegacionAdmin() {
 		setTitle("Navegacion (admin)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 300);

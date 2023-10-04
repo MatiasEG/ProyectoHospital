@@ -21,6 +21,8 @@ public class ModificarMedico extends JFrame {
 	private JPanel contentPane;
 	private JTextField campo_correo;
 	private JTextField campo_usuario;
+	private JTextField campo_nombre;
+	private JTextField campo_apellido;
 
 	/**
 	 * Launch the application.
@@ -30,7 +32,7 @@ public class ModificarMedico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ModificarMedico frame = new ModificarMedico(new Medico("Pepe", "Segundo", "user_ps", "mail@mail.com", "pass"));
+					ModificarMedico frame = new ModificarMedico(new Medico("Pepe", "Segundo", "user_aps", "mail@mail.com", "pass"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,36 +46,58 @@ public class ModificarMedico extends JFrame {
 	 */
 	public ModificarMedico(Medico medico) {
 		setTitle("Modificar medico");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 417, 160);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 185);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label_correo = new JLabel("Correo");
-		label_correo.setBounds(207, 11, 187, 14);
-		contentPane.add(label_correo);
+		campo_nombre = new JTextField();
+		campo_nombre.setBounds(23, 39, 187, 20);
+		campo_nombre.setText(medico.getNombre());
+		campo_nombre.setEditable(false);
+		contentPane.add(campo_nombre);
+		campo_nombre.setColumns(10);
 		
-		campo_correo = new JTextField();
-		campo_correo.setColumns(10);
-		campo_correo.setBounds(207, 24, 187, 20);
-		campo_correo.setText(medico.getCorreo());
-		contentPane.add(campo_correo);
+		campo_apellido = new JTextField();
+		campo_apellido.setBounds(220, 39, 187, 20);
+		campo_apellido.setText(medico.getApellido());
+		campo_apellido.setEditable(false);
+		contentPane.add(campo_apellido);
+		campo_apellido.setColumns(10);
+		
+		JLabel label_nombre = new JLabel("Nombre/s");
+		label_nombre.setBounds(23, 26, 187, 14);
+		contentPane.add(label_nombre);
+		
+		JLabel label_apellido = new JLabel("Apellido/s");
+		label_apellido.setBounds(220, 26, 187, 14);
+		contentPane.add(label_apellido);
 		
 		JLabel label_usuario = new JLabel("Usuario");
-		label_usuario.setBounds(10, 11, 187, 14);
+		label_usuario.setBounds(23, 70, 187, 14);
 		contentPane.add(label_usuario);
 		
 		campo_usuario = new JTextField();
 		campo_usuario.setColumns(10);
-		campo_usuario.setBounds(10, 24, 187, 20);
 		campo_usuario.setText(medico.getUsuario());
+		campo_usuario.setBounds(23, 83, 187, 20);
 		contentPane.add(campo_usuario);
 		
+		campo_correo = new JTextField();
+		campo_correo.setColumns(10);
+		campo_correo.setBounds(220, 83, 187, 20);
+		campo_correo.setText(medico.getCorreo());
+		contentPane.add(campo_correo);
+		
+		JLabel label_correo = new JLabel("Correo");
+		label_correo.setBounds(220, 70, 187, 14);
+		contentPane.add(label_correo);
+		
 		JButton btn_cancelar = new JButton("Cancelar");
-		btn_cancelar.setBounds(305, 87, 89, 23);
+		btn_cancelar.setBounds(318, 114, 89, 23);
 		btn_cancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	ModificarMedico.this.dispose();
@@ -82,7 +106,7 @@ public class ModificarMedico extends JFrame {
 		contentPane.add(btn_cancelar);
 		
 		JButton btn_guardar = new JButton("Guardar");
-		btn_guardar.setBounds(207, 87, 89, 23);
+		btn_guardar.setBounds(220, 114, 89, 23);
 		btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	if(!campo_usuario.getText().equals(medico.getUsuario())) {
@@ -116,6 +140,7 @@ public class ModificarMedico extends JFrame {
             }
         });
 		contentPane.add(btn_guardar);
+		
 	}
 	
 	// Función para validar el formato de un correo electrónico utilizando una expresión regular

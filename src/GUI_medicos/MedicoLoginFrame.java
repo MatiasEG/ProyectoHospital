@@ -1,4 +1,4 @@
-package GUI_administradores;
+package GUI_medicos;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
-public class AdminLoginFrame extends JFrame {
+public class MedicoLoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField campo_usuario;
@@ -28,7 +28,7 @@ public class AdminLoginFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminLoginFrame frame = new AdminLoginFrame();
+					MedicoLoginFrame frame = new MedicoLoginFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class AdminLoginFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminLoginFrame() {
+	public MedicoLoginFrame() {
 		setTitle("Admin login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 200);
@@ -74,8 +74,8 @@ public class AdminLoginFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	if(campo_usuario.getText().equals(username) && campo_contrasenia.getText().equals(password)) {
             		try {
-            			NavegacionAdmin frame = new NavegacionAdmin();
-						AdminLoginFrame.this.dispose();
+            			NavegacionMedico frame = new NavegacionMedico();
+						MedicoLoginFrame.this.dispose();
 						frame.setVisible(true);
 					} catch (Exception e1) {
 						e1.printStackTrace();

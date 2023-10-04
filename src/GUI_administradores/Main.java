@@ -17,6 +17,9 @@ public class Main{
 	public static void main(String[] args) {
 		medicos = new DefaultListModel<>();
 		pacientes = new DefaultListModel<>();
+		
+		//TODO agregar medicos hardcodeados
+		//TODO agregar pacientes hardcodeados
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
