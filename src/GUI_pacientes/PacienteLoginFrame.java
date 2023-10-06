@@ -1,4 +1,4 @@
-package GUI_medicos;
+package GUI_pacientes;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
-public class MedicoLoginFrame extends JFrame {
+public class PacienteLoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField campo_usuario;
@@ -24,12 +24,12 @@ public class MedicoLoginFrame extends JFrame {
 	 * Launch the application.
 	 */
 	//TODO comment this main
-	//TODO agregar medicos hardcodeados para poder iniciar sesion
+	//TODO agregar pacientes hardcodeados para poder iniciar sesion
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MedicoLoginFrame frame = new MedicoLoginFrame();
+					PacienteLoginFrame frame = new PacienteLoginFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class MedicoLoginFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MedicoLoginFrame() {
+	public PacienteLoginFrame() {
 		setTitle("Admin login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 200);
@@ -75,8 +75,8 @@ public class MedicoLoginFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	if(campo_usuario.getText().equals(username) && campo_contrasenia.getText().equals(password)) {
             		try {
-            			NavegacionMedico frame = new NavegacionMedico();
-						MedicoLoginFrame.this.dispose();
+            			NavegacionPaciente frame = new NavegacionPaciente();
+						PacienteLoginFrame.this.dispose();
 						frame.setVisible(true);
 					} catch (Exception e1) {
 						e1.printStackTrace();
