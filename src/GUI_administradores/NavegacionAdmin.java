@@ -89,7 +89,7 @@ public class NavegacionAdmin extends JFrame {
                 int selectedIndex = list_medicos.getSelectedIndex();
                 if (selectedIndex != -1) {
                 	try {
-    					ModificarMedico frame = new ModificarMedico(Main.listaMedicos().get(selectedIndex));
+    					ModificarMedico frame = new ModificarMedico(MainAdmin.listaMedicos().get(selectedIndex));
     					frame.setVisible(true);
     				} catch (Exception e1) {
     					e1.printStackTrace();
@@ -104,7 +104,7 @@ public class NavegacionAdmin extends JFrame {
 		scrollPane_medicos.setBounds(0, 0, 150, 130);
 		panel.add(scrollPane_medicos);
 		
-		list_medicos = new JList<>(Main.listaMedicos());
+		list_medicos = new JList<>(MainAdmin.listaMedicos());
 		scrollPane_medicos.setViewportView(list_medicos);
 		
 		JButton btn_eliminarMedico = new JButton("Eliminar");
@@ -113,7 +113,7 @@ public class NavegacionAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_medicos.getSelectedIndex();
                 if (selectedIndex != -1) {
-                	Main.eliminarMedico(selectedIndex);
+                	MainAdmin.eliminarMedico(selectedIndex);
                 }
             }
         });
@@ -140,7 +140,7 @@ public class NavegacionAdmin extends JFrame {
 		scrollPane_pacientes.setBounds(0, 0, 150, 130);
 		panel_1.add(scrollPane_pacientes);
 		
-		list_pacientes = new JList<>(Main.listaPacientes());
+		list_pacientes = new JList<>(MainAdmin.listaPacientes());
 		scrollPane_pacientes.setViewportView(list_pacientes);
 		
 		JButton btn_eliminarPaciente = new JButton("Eliminar");
@@ -149,7 +149,7 @@ public class NavegacionAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_pacientes.getSelectedIndex();
                 if (selectedIndex != -1) {
-                	Main.eliminarPaciente(selectedIndex);
+                	MainAdmin.eliminarPaciente(selectedIndex);
                 }
             }
         });

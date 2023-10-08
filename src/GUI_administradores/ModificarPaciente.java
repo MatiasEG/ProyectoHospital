@@ -86,10 +86,10 @@ public class ModificarPaciente extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarPaciente(Paciente paciente) {
-		DefaultListModel<String> alergiasAux = Main.copyList(paciente.getAlergias());
-		DefaultListModel<String> diagnosticosAux = Main.copyList(paciente.getDiagnosticos());
-		DefaultListModel<String> tratamientosAux = Main.copyList(paciente.getTratamientos());
-		DefaultListModel<String> medicamentosAux = Main.copyList(paciente.getMedicamentos());
+		DefaultListModel<String> alergiasAux = MainAdmin.copyList(paciente.getAlergias());
+		DefaultListModel<String> diagnosticosAux = MainAdmin.copyList(paciente.getDiagnosticos());
+		DefaultListModel<String> tratamientosAux = MainAdmin.copyList(paciente.getTratamientos());
+		DefaultListModel<String> medicamentosAux = MainAdmin.copyList(paciente.getMedicamentos());
 		
 		setTitle("Registro Paciente");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

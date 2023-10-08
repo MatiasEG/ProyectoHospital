@@ -130,7 +130,7 @@ public class RegistroMedico extends JFrame {
             			if(campo_contrasenia.getText().equals(campo_confirme_contrasenia.getText())) {
             				JOptionPane.showMessageDialog(null, "Medico registrado exitosamente!");
                     		Medico medico = new Medico(campo_nombre.getText(), campo_apellido.getText(), campo_usuario.getText(), campo_correo.getText(), campo_contrasenia.getText());
-                    		Main.agregarMedico(medico);
+                    		MainAdmin.agregarMedico(medico);
         					RegistroMedico.this.dispose();
             			}else {
                     		JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");

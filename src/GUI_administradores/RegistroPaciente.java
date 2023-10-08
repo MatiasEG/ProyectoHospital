@@ -165,7 +165,7 @@ public class RegistroPaciente extends JFrame {
                     		Paciente paciente = 
                     				new Paciente(campo_nombre.getText(), campo_apellido.getText(), campo_usuario.getText(), campo_correo.getText(), campo_contrasenia.getText(),
                     						listModelAlergias, listModelDiagnosticos, listModelTratamientos, listModelMedicamentos);
-                    		Main.agregarPaciente(paciente);
+                    		MainAdmin.agregarPaciente(paciente);
         					RegistroPaciente.this.dispose();
             			}else {
                     		JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");
