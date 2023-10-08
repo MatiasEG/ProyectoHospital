@@ -6,7 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
+import GUI_medicos.MainMedico;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,7 +20,7 @@ public class PacienteLoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField campo_usuario;
-	private JTextField campo_contrasenia;
+	private JPasswordField campo_contrasenia;
 	private static final String username = "admin";
 	private static final String password = "123";
 	
@@ -60,7 +64,7 @@ public class PacienteLoginFrame extends JFrame {
 		lblUsuario.setBounds(10, 11, 264, 14);
 		contentPane.add(lblUsuario);
 		
-		campo_contrasenia = new JTextField();
+		campo_contrasenia = new JPasswordField();
 		campo_contrasenia.setColumns(10);
 		campo_contrasenia.setBounds(10, 92, 264, 20);
 		contentPane.add(campo_contrasenia);
@@ -73,7 +77,7 @@ public class PacienteLoginFrame extends JFrame {
 		btn_login.setBounds(10, 123, 264, 23);
 		btn_login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(campo_usuario.getText().equals(username) && campo_contrasenia.getText().equals(password)) {
+            	if(MainPaciente.validCredentials(campo_usuario.getText(), campo_contrasenia.getText())) {
             		try {
             			NavegacionPaciente frame = new NavegacionPaciente();
 						PacienteLoginFrame.this.dispose();
