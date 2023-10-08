@@ -8,11 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class AdminLoginFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -73,7 +75,7 @@ public class AdminLoginFrame extends JFrame {
 		btn_login.setBounds(10, 123, 264, 23);
 		btn_login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(campo_usuario.getText().equals(username) && campo_contrasenia.getText().equals(password)) {
+            	if(campo_usuario.getText().equals(username) && String.valueOf(campo_contrasenia.getPassword()).equals(password)) {
             		try {
             			NavegacionAdmin frame = new NavegacionAdmin();
 						AdminLoginFrame.this.dispose();

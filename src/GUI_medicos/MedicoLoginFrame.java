@@ -8,11 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
+import Users.UsersData;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class MedicoLoginFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -71,7 +75,7 @@ public class MedicoLoginFrame extends JFrame {
 		btn_login.setBounds(10, 123, 264, 23);
 		btn_login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(MainMedico.validCredentials(campo_usuario.getText(), campo_contrasenia.getText())) {
+            	if(UsersData.getInstance().validCredentials(campo_usuario.getText(), String.valueOf(campo_contrasenia.getPassword()))) {
             		try {
             			NavegacionMedico frame = new NavegacionMedico();
 						MedicoLoginFrame.this.dispose();

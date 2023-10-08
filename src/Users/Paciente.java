@@ -1,7 +1,5 @@
 package Users;
 
-import java.util.List;
-
 import javax.swing.DefaultListModel;
 
 public class Paciente {

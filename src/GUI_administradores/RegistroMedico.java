@@ -11,12 +11,14 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import Users.Medico;
+import Users.UsersData;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class RegistroMedico extends JFrame {
 	private JPanel contentPane;
 	private JTextField campo_nombre;
@@ -130,7 +132,8 @@ public class RegistroMedico extends JFrame {
             			if(campo_contrasenia.getText().equals(campo_confirme_contrasenia.getText())) {
             				JOptionPane.showMessageDialog(null, "Medico registrado exitosamente!");
                     		Medico medico = new Medico(campo_nombre.getText(), campo_apellido.getText(), campo_usuario.getText(), campo_correo.getText(), campo_contrasenia.getText());
-                    		MainAdmin.agregarMedico(medico);
+                    		UsersData.getInstance().agregarMedico(medico);
+                    		NavegacionAdmin.updateLists();
         					RegistroMedico.this.dispose();
             			}else {
                     		JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");

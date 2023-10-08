@@ -18,7 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Users.Paciente;
+import Users.UsersData;
 
+@SuppressWarnings("serial")
 public class ModificarPaciente extends JFrame {
 
 	private JPanel contentPane;
@@ -29,7 +31,7 @@ public class ModificarPaciente extends JFrame {
 	private JTextField campo_correo;
 	private JTextField campo_alergia;
 	private JLabel label_alergias;
-	private JList lista_alergias;
+	private JList<String> lista_alergias;
     private DefaultListModel<String> listModelAlergias;
     private DefaultListModel<String> listModelDiagnosticos;
     private DefaultListModel<String> listModelTratamientos;
@@ -39,19 +41,19 @@ public class ModificarPaciente extends JFrame {
     private JLabel label_tratamientos;
     private JPanel panel_alergias_1;
     private JTextField campo_Tratamiento;
-    private JList lista_tratamientos;
+    private JList<String> lista_tratamientos;
     private JButton btn_agregarTratamiento;
     private JButton btn_eliminarTratamiento;
     private JLabel label_diagnosticos;
     private JPanel panel_alergias_2;
     private JTextField campo_diagnostico;
-    private JList lista_diagnosticos;
+    private JList<String> lista_diagnosticos;
     private JButton btn_agregarDiagnostico;
     private JButton btn_eliminarDiagnostico;
     private JLabel label_medicamentos;
     private JPanel panel_alergias_3;
     private JTextField campo_medicamento;
-    private JList lista_medicamentos;
+    private JList<String> lista_medicamentos;
     private JButton btn_agregarMedicamento;
     private JButton btn_eliminarMedicamento;
 
@@ -86,10 +88,10 @@ public class ModificarPaciente extends JFrame {
 	 * Create the frame.
 	 */
 	public ModificarPaciente(Paciente paciente) {
-		DefaultListModel<String> alergiasAux = MainAdmin.copyList(paciente.getAlergias());
-		DefaultListModel<String> diagnosticosAux = MainAdmin.copyList(paciente.getDiagnosticos());
-		DefaultListModel<String> tratamientosAux = MainAdmin.copyList(paciente.getTratamientos());
-		DefaultListModel<String> medicamentosAux = MainAdmin.copyList(paciente.getMedicamentos());
+		DefaultListModel<String> alergiasAux = UsersData.getInstance().copyList(paciente.getAlergias());
+		DefaultListModel<String> diagnosticosAux = UsersData.getInstance().copyList(paciente.getDiagnosticos());
+		DefaultListModel<String> tratamientosAux = UsersData.getInstance().copyList(paciente.getTratamientos());
+		DefaultListModel<String> medicamentosAux = UsersData.getInstance().copyList(paciente.getMedicamentos());
 		
 		setTitle("Registro Paciente");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

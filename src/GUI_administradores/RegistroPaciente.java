@@ -17,9 +17,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Users.Paciente;
+import Users.UsersData;
 
 import javax.swing.JList;
 
+@SuppressWarnings("serial")
 public class RegistroPaciente extends JFrame {
 
 	private JPanel contentPane;
@@ -32,7 +34,7 @@ public class RegistroPaciente extends JFrame {
 	private JTextField campo_confirme_contrasenia;
 	private JTextField campo_alergia;
 	private JLabel label_alergias;
-	private JList lista_alergias;
+	private JList<String> lista_alergias;
     private DefaultListModel<String> listModelAlergias;
     private DefaultListModel<String> listModelDiagnosticos;
     private DefaultListModel<String> listModelTratamientos;
@@ -42,19 +44,19 @@ public class RegistroPaciente extends JFrame {
     private JLabel label_tratamientos;
     private JPanel panel_alergias_1;
     private JTextField campo_Tratamiento;
-    private JList lista_tratamientos;
+    private JList<String> lista_tratamientos;
     private JButton btn_agregarTratamiento;
     private JButton btn_eliminarTratamiento;
     private JLabel label_diagnosticos;
     private JPanel panel_alergias_2;
     private JTextField campo_diagnostico;
-    private JList lista_diagnosticos;
+    private JList<String> lista_diagnosticos;
     private JButton btn_agregarDiagnostico;
     private JButton btn_eliminarDiagnostico;
     private JLabel label_medicamentos;
     private JPanel panel_alergias_3;
     private JTextField campo_medicamento;
-    private JList lista_medicamentos;
+    private JList<String> lista_medicamentos;
     private JButton btn_agregarMedicamento;
     private JButton btn_eliminarMedicamento;
 
@@ -165,7 +167,8 @@ public class RegistroPaciente extends JFrame {
                     		Paciente paciente = 
                     				new Paciente(campo_nombre.getText(), campo_apellido.getText(), campo_usuario.getText(), campo_correo.getText(), campo_contrasenia.getText(),
                     						listModelAlergias, listModelDiagnosticos, listModelTratamientos, listModelMedicamentos);
-                    		MainAdmin.agregarPaciente(paciente);
+                    		UsersData.getInstance().agregarPaciente(paciente);
+                    		NavegacionAdmin.updateLists();
         					RegistroPaciente.this.dispose();
             			}else {
                     		JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");

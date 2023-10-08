@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Users.UsersData;
+
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,11 +15,14 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
+@SuppressWarnings("serial")
 public class NavegacionAdmin extends JFrame {
 
 	private JPanel contentPane;
-	private JList list_medicos;
-	private JList list_pacientes;
+	private static JList<String> list_medicos;
+	private static JList<String> list_pacientes;
+	private static JScrollPane scrollPane_pacientes;
+	private static JScrollPane scrollPane_medicos;
 
 	/**
 	 * Launch the application.
@@ -87,7 +93,7 @@ public class NavegacionAdmin extends JFrame {
                 int selectedIndex = list_medicos.getSelectedIndex();
                 if (selectedIndex != -1) {
                 	try {
-    					ModificarMedico frame = new ModificarMedico(MainAdmin.listaMedicos().get(selectedIndex));
+    					ModificarMedico frame = new ModificarMedico(UsersData.getInstance().listaMedicos().get(selectedIndex));
     					frame.setVisible(true);
     				} catch (Exception e1) {
     					e1.printStackTrace();
@@ -98,11 +104,11 @@ public class NavegacionAdmin extends JFrame {
 		panel.setLayout(null);
 		panel.add(btn_editarMedico);
 		
-		JScrollPane scrollPane_medicos = new JScrollPane();
+		scrollPane_medicos = new JScrollPane();
 		scrollPane_medicos.setBounds(0, 0, 150, 130);
 		panel.add(scrollPane_medicos);
 		
-		list_medicos = new JList<>(MainAdmin.listaMedicosNombre());
+		list_medicos = new JList<>(UsersData.getInstance().listaMedicosNombre());
 		scrollPane_medicos.setViewportView(list_medicos);
 		
 		JButton btn_eliminarMedico = new JButton("Eliminar");
@@ -111,8 +117,8 @@ public class NavegacionAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_medicos.getSelectedIndex();
                 if (selectedIndex != -1) {
-                	MainAdmin.eliminarMedico(selectedIndex);
-                	list_medicos = new JList<>(MainAdmin.listaMedicosNombre());
+                	UsersData.getInstance().eliminarMedico(selectedIndex);
+                	list_medicos = new JList<>(UsersData.getInstance().listaMedicosNombre());
                 	scrollPane_medicos.setViewportView(list_medicos);
                 }
             }
@@ -139,7 +145,7 @@ public class NavegacionAdmin extends JFrame {
                 int selectedIndex = list_pacientes.getSelectedIndex();
                 if (selectedIndex != -1) {
                 	try {
-    					ModificarPaciente frame = new ModificarPaciente(MainAdmin.listaPacientes().get(selectedIndex));
+    					ModificarPaciente frame = new ModificarPaciente(UsersData.getInstance().listaPacientes().get(selectedIndex));
     					frame.setVisible(true);
     				} catch (Exception e1) {
     					e1.printStackTrace();
@@ -149,11 +155,11 @@ public class NavegacionAdmin extends JFrame {
         });
 		panel_1.add(btn_editarPaciente);
 		
-		JScrollPane scrollPane_pacientes = new JScrollPane();
+		scrollPane_pacientes = new JScrollPane();
 		scrollPane_pacientes.setBounds(0, 0, 150, 130);
 		panel_1.add(scrollPane_pacientes);
 		
-		list_pacientes = new JList<>(MainAdmin.listaPacientesNombre());
+		list_pacientes = new JList<>(UsersData.getInstance().listaPacientesNombre());
 		scrollPane_pacientes.setViewportView(list_pacientes);
 		
 		JButton btn_eliminarPaciente = new JButton("Eliminar");
@@ -162,12 +168,21 @@ public class NavegacionAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_pacientes.getSelectedIndex();
                 if (selectedIndex != -1) {
-                	MainAdmin.eliminarPaciente(selectedIndex);
-                	list_pacientes = new JList<>(MainAdmin.listaPacientesNombre());
+                	UsersData.getInstance().eliminarPaciente(selectedIndex);
+                	list_pacientes = new JList<>(UsersData.getInstance().listaPacientesNombre());
             		scrollPane_pacientes.setViewportView(list_pacientes);
                 }
             }
         });
 		panel_1.add(btn_eliminarPaciente);
+	}
+
+	public static void updateLists() {
+		list_pacientes = new JList<>(UsersData.getInstance().listaPacientesNombre());
+		scrollPane_pacientes.setViewportView(list_pacientes);
+	
+		list_medicos = new JList<>(UsersData.getInstance().listaMedicosNombre());
+		scrollPane_medicos.setViewportView(list_medicos);
+
 	}
 }

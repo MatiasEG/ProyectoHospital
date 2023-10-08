@@ -9,26 +9,24 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
-import GUI_medicos.MainMedico;
+import Users.UsersData;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class PacienteLoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField campo_usuario;
 	private JPasswordField campo_contrasenia;
-	private static final String username = "admin";
-	private static final String password = "123";
 	
 	/**
 	 * Launch the application.
 	 */
 	//TODO comment this main
-	//TODO agregar pacientes hardcodeados para poder iniciar sesion
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -77,7 +75,7 @@ public class PacienteLoginFrame extends JFrame {
 		btn_login.setBounds(10, 123, 264, 23);
 		btn_login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(MainPaciente.validCredentials(campo_usuario.getText(), campo_contrasenia.getText())) {
+            	if(UsersData.getInstance().validCredentials(campo_usuario.getText(), String.valueOf(campo_contrasenia.getPassword()))) {
             		try {
             			NavegacionPaciente frame = new NavegacionPaciente();
 						PacienteLoginFrame.this.dispose();
