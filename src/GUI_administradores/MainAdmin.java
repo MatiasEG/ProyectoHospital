@@ -62,6 +62,14 @@ public class MainAdmin{
         return medicos;
     }
 	
+	public static DefaultListModel<String> listaMedicosNombre() {
+		DefaultListModel<String> newList = new DefaultListModel<>();
+		for(int i=0; i<medicos.size(); i++) {
+			newList.addElement(medicos.getElementAt(i).getApellido()+", "+medicos.getElementAt(i).getNombre());
+		}
+		return newList;
+    }
+	
 	public static void agregarPaciente(Paciente paciente) {
         pacientes.add(0,paciente);
     }
@@ -72,6 +80,14 @@ public class MainAdmin{
 	
 	public static DefaultListModel<Paciente> listaPacientes() {
         return pacientes;
+    }
+	
+	public static DefaultListModel<String> listaPacientesNombre() {
+		DefaultListModel<String> newList = new DefaultListModel<>();
+		for(int i=0; i<pacientes.size(); i++) {
+			newList.addElement(pacientes.getElementAt(i).getApellido()+", "+pacientes.getElementAt(i).getNombre());
+		}
+		return newList;
     }
 	
 	public static DefaultListModel<String> copyList(DefaultListModel<String> originalList) {

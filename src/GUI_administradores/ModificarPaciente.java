@@ -246,9 +246,9 @@ public class ModificarPaciente extends JFrame {
 		btn_agregarTratamiento.setBounds(0, 100, 89, 23);
 		btn_agregarTratamiento.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String alergia = campo_Tratamiento.getText().trim();
-                if (!alergia.isEmpty()) {
-                	listModelTratamientos.addElement(alergia);
+                String tratamiento = campo_Tratamiento.getText().trim();
+                if (!tratamiento.isEmpty()) {
+                	listModelTratamientos.addElement(tratamiento);
                     campo_Tratamiento.setText("");
                 }
             }
@@ -270,7 +270,7 @@ public class ModificarPaciente extends JFrame {
 		JScrollPane scrollPane_tratamientos = new JScrollPane();
 		scrollPane_tratamientos.setBounds(0, 21, 187, 78);
 		panel_alergias_1.add(scrollPane_tratamientos);
-		lista_tratamientos = new JList<>(paciente.getTratamientos());
+		lista_tratamientos = new JList<>(listModelTratamientos);
 		scrollPane_tratamientos.setViewportView(lista_tratamientos);
 		
 		label_diagnosticos = new JLabel("Diagnosticos");
@@ -293,9 +293,9 @@ public class ModificarPaciente extends JFrame {
 		btn_agregarDiagnostico.setBounds(0, 100, 89, 23);
 		btn_agregarDiagnostico.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String alergia = campo_diagnostico.getText().trim();
-                if (!alergia.isEmpty()) {
-                	listModelDiagnosticos.addElement(alergia);
+                String diagnostico = campo_diagnostico.getText().trim();
+                if (!diagnostico.isEmpty()) {
+                	listModelDiagnosticos.addElement(diagnostico);
                 	campo_diagnostico.setText("");
                 }
             }
@@ -340,9 +340,9 @@ public class ModificarPaciente extends JFrame {
 		btn_agregarMedicamento.setBounds(0, 100, 89, 23);
 		btn_agregarMedicamento.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String alergia = campo_medicamento.getText().trim();
-                if (!alergia.isEmpty()) {
-                	listModelMedicamentos.addElement(alergia);
+                String medicamento = campo_medicamento.getText().trim();
+                if (!medicamento.isEmpty()) {
+                	listModelMedicamentos.addElement(medicamento);
                     campo_medicamento.setText("");
                 }
             }
