@@ -1,4 +1,4 @@
-package GUI_administradores;
+package GUI_medicos;
 
 import java.awt.EventQueue;
 
@@ -7,7 +7,7 @@ import javax.swing.DefaultListModel;
 import Users.Medico;
 import Users.Paciente;
 
-public class MainAdmin{
+public class MainMedico{
     private static DefaultListModel<Medico> medicos;
     private static DefaultListModel<Paciente> pacientes;
 	
@@ -41,7 +41,7 @@ public class MainAdmin{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminLoginFrame frame = new AdminLoginFrame();
+					MedicoLoginFrame frame = new MedicoLoginFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -97,4 +97,14 @@ public class MainAdmin{
 		}
 		return newList;
 	}
+	
+	public static boolean validCredentials(String user, String pass) {
+		for(int i=0; i<medicos.size(); i++) {
+			if(medicos.get(i).getUsuario().equals(user) && medicos.get(i).getContrasenia().equals(pass)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
+

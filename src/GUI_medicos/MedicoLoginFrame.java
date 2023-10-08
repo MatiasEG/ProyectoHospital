@@ -17,14 +17,11 @@ public class MedicoLoginFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField campo_usuario;
 	private JTextField campo_contrasenia;
-	private static final String username = "admin";
-	private static final String password = "123";
 	
 	/**
 	 * Launch the application.
 	 */
 	//TODO comment this main
-	//TODO agregar medicos hardcodeados para poder iniciar sesion
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,7 +39,7 @@ public class MedicoLoginFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MedicoLoginFrame() {
-		setTitle("Admin login");
+		setTitle("Medico login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 200);
 		contentPane = new JPanel();
@@ -73,7 +70,7 @@ public class MedicoLoginFrame extends JFrame {
 		btn_login.setBounds(10, 123, 264, 23);
 		btn_login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(campo_usuario.getText().equals(username) && campo_contrasenia.getText().equals(password)) {
+            	if(MainMedico.validCredentials(campo_usuario.getText(), campo_contrasenia.getText())) {
             		try {
             			NavegacionMedico frame = new NavegacionMedico();
 						MedicoLoginFrame.this.dispose();
