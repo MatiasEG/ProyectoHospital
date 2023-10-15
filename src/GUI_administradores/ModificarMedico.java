@@ -127,21 +127,37 @@ public class ModificarMedico extends JFrame {
 		btn_guardar.setBounds(220, 327, 89, 23);
 		btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(!campo_usuario.getText().equals(medico.getUsuario())) {
-            		if(!campo_correo.getText().equals(medico.getCorreo())) {
-            			if(correoValido(campo_correo.getText())) {
+            	if(!campo_usuario.getText().equals(medico.getUsuario()) || !campo_correo.getText().equals(medico.getCorreo())
+            			|| campo_lunes.getText().equals(medico.getHorarios()[0].getRango())
+            			|| campo_martes.getText().equals(medico.getHorarios()[1].getRango())
+            			|| campo_miercoles.getText().equals(medico.getHorarios()[2].getRango())
+            			|| campo_jueves.getText().equals(medico.getHorarios()[3].getRango())
+            			|| campo_viernes.getText().equals(medico.getHorarios()[4].getRango())
+            			|| campo_sabado.getText().equals(medico.getHorarios()[5].getRango())
+            			|| campo_domingo.getText().equals(medico.getHorarios()[6].getRango())) {
+        			if(correoValido(campo_correo.getText())) {
+        				if(horariosValidos() && minutosValidos()) {
+        					Horario horarioLunes = new Horario(campo_lunes.getText(), campo_minutos.getText());
+        					Horario horarioMartes = new Horario(campo_martes.getText(), campo_minutos.getText());
+        					Horario horarioMiercoles = new Horario(campo_miercoles.getText(), campo_minutos.getText());
+        					Horario horarioJueves = new Horario(campo_jueves.getText(), campo_minutos.getText());
+        					Horario horarioViernes = new Horario(campo_viernes.getText(), campo_minutos.getText());
+        					Horario horarioSabado = new Horario(campo_sabado.getText(), campo_minutos.getText());
+        					Horario horarioDomingo = new Horario(campo_domingo.getText(), campo_minutos.getText());
+        					
+        					Horario[] horarios = {horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
+            				
             				medico.setUsuario(campo_usuario.getText());
             				medico.setCorreo(campo_correo.getText());
-            				JOptionPane.showMessageDialog(null, "El nombre de usuario y correo se actualizo correctamente.");
+            				medico.setHorarios(horarios);
+            				JOptionPane.showMessageDialog(null, "Los datos del medico se actualizaron correctamente.");
             				ModificarMedico.this.dispose();
-            			}else{
-            				JOptionPane.showMessageDialog(null, "El correo no es valido.");
-            			}
-            		}else{
-            			medico.setUsuario(campo_usuario.getText());
-        				JOptionPane.showMessageDialog(null, "El nombre de usuario se actualizo correctamente.");
-            			ModificarMedico.this.dispose();
-            		}
+        				}else {
+        					JOptionPane.showMessageDialog(null, "Revise los horarios y minutos de consulta.");
+        				}
+        			}else{
+        				JOptionPane.showMessageDialog(null, "El correo no es valido.");
+        			}
             	}else{
             		if(!campo_correo.getText().equals(medico.getCorreo())) {
             			if(correoValido(campo_correo.getText())) {
@@ -222,6 +238,7 @@ public class ModificarMedico extends JFrame {
 		campo_minutos = new JTextField();
 		campo_minutos.setColumns(10);
 		campo_minutos.setBounds(220, 303, 187, 20);
+		campo_minutos.setText(medico.getMinutosDeCita());
 		contentPane.add(campo_minutos);
 		
 		JLabel label_minutos = new JLabel("Minutos de cita");
@@ -237,6 +254,10 @@ public class ModificarMedico extends JFrame {
 		JLabel label_sabado = new JLabel("Horario Sabado");
 		label_sabado.setBounds(220, 246, 187, 14);
 		contentPane.add(label_sabado);
+		
+		JLabel lbl_info = new JLabel("Ingrese los horarios en formato ##-## con un rango horario entre 00-24");
+		lbl_info.setBounds(23, 133, 384, 14);
+		contentPane.add(lbl_info);
 		
 	}
 	
