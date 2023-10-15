@@ -1,6 +1,9 @@
 package Users;
 
+import java.text.ParseException;
+
 import javax.swing.DefaultListModel;
+import javax.swing.text.MaskFormatter;
 
 public class UsersData {
 	private static UsersData instance;
@@ -129,5 +132,31 @@ public class UsersData {
 			}
 		}
 		return false;
+	}
+	
+	public MaskFormatter getFormatoHorarios() {
+		MaskFormatter formatter_horario = null;
+		try {
+			formatter_horario = new MaskFormatter("##-##");
+			formatter_horario.setValidCharacters("0123456789");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return formatter_horario;
+	}
+	
+	public MaskFormatter getFormatoMinutos() {
+		MaskFormatter formatter_minutos = null;
+		try {
+			formatter_minutos = new MaskFormatter("##");
+			formatter_minutos.setValidCharacters("0123456789");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return formatter_minutos;
 	}
 }

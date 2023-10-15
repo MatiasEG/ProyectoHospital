@@ -2,7 +2,6 @@ package GUI_administradores;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,8 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
-
 import Users.Horario;
 import Users.Medico;
 import Users.UsersData;
@@ -72,57 +69,57 @@ public class RegistroMedico extends JFrame {
 		contentPane.setLayout(null);
 		
 		campo_nombre = new JTextField();
-		campo_nombre.setBounds(23, 39, 187, 20);
+		campo_nombre.setBounds(23, 24, 187, 20);
 		contentPane.add(campo_nombre);
 		campo_nombre.setColumns(10);
 		
 		campo_apellido = new JTextField();
-		campo_apellido.setBounds(220, 39, 187, 20);
+		campo_apellido.setBounds(220, 24, 187, 20);
 		contentPane.add(campo_apellido);
 		campo_apellido.setColumns(10);
 		
 		JLabel label_nombre = new JLabel("Nombre/s");
-		label_nombre.setBounds(23, 26, 187, 14);
+		label_nombre.setBounds(23, 11, 187, 14);
 		contentPane.add(label_nombre);
 		
 		JLabel label_apellido = new JLabel("Apellido/s");
-		label_apellido.setBounds(220, 26, 187, 14);
+		label_apellido.setBounds(220, 11, 187, 14);
 		contentPane.add(label_apellido);
 		
 		JLabel label_usuario = new JLabel("Usuario");
-		label_usuario.setBounds(23, 70, 187, 14);
+		label_usuario.setBounds(23, 55, 187, 14);
 		contentPane.add(label_usuario);
 		
 		campo_usuario = new JTextField();
 		campo_usuario.setColumns(10);
-		campo_usuario.setBounds(23, 83, 187, 20);
+		campo_usuario.setBounds(23, 68, 187, 20);
 		contentPane.add(campo_usuario);
 		
 		campo_correo = new JTextField();
 		campo_correo.setColumns(10);
-		campo_correo.setBounds(220, 83, 187, 20);
+		campo_correo.setBounds(220, 68, 187, 20);
 		contentPane.add(campo_correo);
 		
 		JLabel label_correo = new JLabel("Correo");
-		label_correo.setBounds(220, 70, 187, 14);
+		label_correo.setBounds(220, 55, 187, 14);
 		contentPane.add(label_correo);
 		
 		JLabel label_contrasenia = new JLabel("Constraseña");
-		label_contrasenia.setBounds(23, 114, 187, 14);
+		label_contrasenia.setBounds(23, 99, 187, 14);
 		contentPane.add(label_contrasenia);
 		
 		campo_contrasenia = new JPasswordField();
 		campo_contrasenia.setColumns(10);
-		campo_contrasenia.setBounds(23, 127, 187, 20);
+		campo_contrasenia.setBounds(23, 112, 187, 20);
 		contentPane.add(campo_contrasenia);
 		
 		JLabel label_confirme_contrasenia = new JLabel("Confirme constraseña");
-		label_confirme_contrasenia.setBounds(220, 114, 187, 14);
+		label_confirme_contrasenia.setBounds(220, 99, 187, 14);
 		contentPane.add(label_confirme_contrasenia);
 		
 		campo_confirme_contrasenia = new JPasswordField();
 		campo_confirme_contrasenia.setColumns(10);
-		campo_confirme_contrasenia.setBounds(220, 127, 187, 20);
+		campo_confirme_contrasenia.setBounds(220, 112, 187, 20);
 		contentPane.add(campo_confirme_contrasenia);
 		
 		JButton btn_cancelar = new JButton("Cancelar");
@@ -172,20 +169,7 @@ public class RegistroMedico extends JFrame {
         });
 		contentPane.add(btn_aceptar);
 		
-		MaskFormatter formatter_horario = null;
-		MaskFormatter formatter_minutos = null;
-		try {
-			formatter_horario = new MaskFormatter("##-##");
-			formatter_horario.setValidCharacters("0123456789");
-			
-			formatter_minutos = new MaskFormatter("##");
-			formatter_minutos.setValidCharacters("0123456789");
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		campo_lunes = new JFormattedTextField(new DefaultFormatterFactory(formatter_horario));
+		campo_lunes = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_lunes.setColumns(10);
 		campo_lunes.setBounds(23, 171, 187, 20);
 		contentPane.add(campo_lunes);
@@ -194,7 +178,7 @@ public class RegistroMedico extends JFrame {
 		label_lunes.setBounds(23, 158, 187, 14);
 		contentPane.add(label_lunes);
 		
-		campo_miercoles = new JFormattedTextField(new DefaultFormatterFactory(formatter_horario));
+		campo_miercoles = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_miercoles.setColumns(10);
 		campo_miercoles.setBounds(23, 215, 187, 20);
 		contentPane.add(campo_miercoles);
@@ -203,7 +187,7 @@ public class RegistroMedico extends JFrame {
 		label_miercoles.setBounds(23, 202, 187, 14);
 		contentPane.add(label_miercoles);
 		
-		campo_jueves = new JFormattedTextField(new DefaultFormatterFactory(formatter_horario));
+		campo_jueves = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_jueves.setColumns(10);
 		campo_jueves.setBounds(220, 215, 187, 20);
 		contentPane.add(campo_jueves);
@@ -212,7 +196,7 @@ public class RegistroMedico extends JFrame {
 		label_jueves.setBounds(220, 202, 187, 14);
 		contentPane.add(label_jueves);
 		
-		campo_martes = new JFormattedTextField(new DefaultFormatterFactory(formatter_horario));
+		campo_martes = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_martes.setColumns(10);
 		campo_martes.setBounds(220, 171, 187, 20);
 		contentPane.add(campo_martes);
@@ -221,7 +205,7 @@ public class RegistroMedico extends JFrame {
 		label_martes.setBounds(220, 158, 187, 14);
 		contentPane.add(label_martes);
 		
-		campo_viernes = new JFormattedTextField(new DefaultFormatterFactory(formatter_horario));
+		campo_viernes = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_viernes.setColumns(10);
 		campo_viernes.setBounds(23, 259, 187, 20);
 		contentPane.add(campo_viernes);
@@ -230,7 +214,7 @@ public class RegistroMedico extends JFrame {
 		label_viernes.setBounds(23, 246, 187, 14);
 		contentPane.add(label_viernes);
 		
-		campo_domingo = new JFormattedTextField(new DefaultFormatterFactory(formatter_horario));
+		campo_domingo = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_domingo.setColumns(10);
 		campo_domingo.setBounds(23, 303, 187, 20);
 		contentPane.add(campo_domingo);
@@ -239,7 +223,7 @@ public class RegistroMedico extends JFrame {
 		label_domingo.setBounds(23, 290, 187, 14);
 		contentPane.add(label_domingo);
 		
-		campo_minutos = new JTextField();
+		campo_minutos = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoMinutos()));
 		campo_minutos.setColumns(10);
 		campo_minutos.setBounds(220, 303, 187, 20);
 		contentPane.add(campo_minutos);
@@ -248,7 +232,7 @@ public class RegistroMedico extends JFrame {
 		label_minutos.setBounds(220, 290, 187, 14);
 		contentPane.add(label_minutos);
 		
-		campo_sabado = new JFormattedTextField(new DefaultFormatterFactory(formatter_horario));
+		campo_sabado = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_sabado.setColumns(10);
 		campo_sabado.setBounds(220, 259, 187, 20);
 		contentPane.add(campo_sabado);
@@ -256,6 +240,10 @@ public class RegistroMedico extends JFrame {
 		JLabel label_sabado = new JLabel("Horario Sabado");
 		label_sabado.setBounds(220, 246, 187, 14);
 		contentPane.add(label_sabado);
+		
+		JLabel lbl_info = new JLabel("Ingrese los horarios en formato ##-## con un rango horario entre 00-24");
+		lbl_info.setBounds(23, 143, 384, 14);
+		contentPane.add(lbl_info);
 		
 	}
 	

@@ -9,12 +9,16 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultFormatterFactory;
 import Users.Horario;
 import Users.Medico;
+import Users.UsersData;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 
 @SuppressWarnings("serial")
 public class ModificarMedico extends JFrame {
@@ -175,7 +179,7 @@ public class ModificarMedico extends JFrame {
         });
 		contentPane.add(btn_guardar);
 		
-		campo_lunes = new JTextField();
+		campo_lunes = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_lunes.setColumns(10);
 		campo_lunes.setBounds(23, 171, 187, 20);
 		campo_lunes.setText(medico.getHorarios()[0].getRango());
@@ -185,7 +189,7 @@ public class ModificarMedico extends JFrame {
 		label_lunes.setBounds(23, 158, 187, 14);
 		contentPane.add(label_lunes);
 		
-		campo_miercoles = new JTextField();
+		campo_miercoles = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_miercoles.setColumns(10);
 		campo_miercoles.setBounds(23, 215, 187, 20);
 		campo_miercoles.setText(medico.getHorarios()[2].getRango());
@@ -195,7 +199,7 @@ public class ModificarMedico extends JFrame {
 		label_miercoles.setBounds(23, 202, 187, 14);
 		contentPane.add(label_miercoles);
 		
-		campo_jueves = new JTextField();
+		campo_jueves = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_jueves.setColumns(10);
 		campo_jueves.setBounds(220, 215, 187, 20);
 		campo_jueves.setText(medico.getHorarios()[3].getRango());
@@ -205,7 +209,7 @@ public class ModificarMedico extends JFrame {
 		label_jueves.setBounds(220, 202, 187, 14);
 		contentPane.add(label_jueves);
 		
-		campo_martes = new JTextField();
+		campo_martes = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_martes.setColumns(10);
 		campo_martes.setBounds(220, 171, 187, 20);
 		campo_martes.setText(medico.getHorarios()[1].getRango());
@@ -215,7 +219,7 @@ public class ModificarMedico extends JFrame {
 		label_martes.setBounds(220, 158, 187, 14);
 		contentPane.add(label_martes);
 		
-		campo_viernes = new JTextField();
+		campo_viernes = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_viernes.setColumns(10);
 		campo_viernes.setBounds(23, 259, 187, 20);
 		campo_viernes.setText(medico.getHorarios()[4].getRango());
@@ -225,7 +229,7 @@ public class ModificarMedico extends JFrame {
 		label_viernes.setBounds(23, 246, 187, 14);
 		contentPane.add(label_viernes);
 		
-		campo_domingo = new JTextField();
+		campo_domingo = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_domingo.setColumns(10);
 		campo_domingo.setBounds(23, 303, 187, 20);
 		campo_domingo.setText(medico.getHorarios()[6].getRango());
@@ -235,7 +239,7 @@ public class ModificarMedico extends JFrame {
 		label_domingo.setBounds(23, 290, 187, 14);
 		contentPane.add(label_domingo);
 		
-		campo_minutos = new JTextField();
+		campo_minutos = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoMinutos()));
 		campo_minutos.setColumns(10);
 		campo_minutos.setBounds(220, 303, 187, 20);
 		campo_minutos.setText(medico.getMinutosDeCita());
@@ -245,7 +249,7 @@ public class ModificarMedico extends JFrame {
 		label_minutos.setBounds(220, 290, 187, 14);
 		contentPane.add(label_minutos);
 		
-		campo_sabado = new JTextField();
+		campo_sabado = new JFormattedTextField(new DefaultFormatterFactory(UsersData.getInstance().getFormatoHorarios()));
 		campo_sabado.setColumns(10);
 		campo_sabado.setBounds(220, 259, 187, 20);
 		campo_sabado.setText(medico.getHorarios()[5].getRango());
