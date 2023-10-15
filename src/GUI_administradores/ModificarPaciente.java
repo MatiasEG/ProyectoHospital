@@ -237,7 +237,21 @@ public class ModificarPaciente extends JFrame {
 		lista_medicamentos = new JList<>(listModelMedicamentos);
 		scrollPane_medicamentos.setViewportView(lista_medicamentos);
 		
-		
+		JButton btn_vaciarFicha = new JButton("Vaciar ficha medica");
+		btn_vaciarFicha.setBounds(23, 408, 187, 23);
+		btn_vaciarFicha.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	listModelAlergias.removeAllElements();
+            	listModelTratamientos.removeAllElements();
+            	listModelDiagnosticos.removeAllElements();
+            	listModelMedicamentos.removeAllElements();
+            	//lista_alergias = new JList<>(listModelAlergias);
+            	//lista_tratamientos = new JList<>(listModelTratamientos);
+            	//lista_diagnosticos = new JList<>(listModelDiagnosticos);
+                //lista_medicamentos = new JList<>(listModelMedicamentos);
+            }
+        });
+		contentPane.add(btn_vaciarFicha);
 		
 	}
 	
