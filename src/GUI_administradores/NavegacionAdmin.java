@@ -6,12 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Users.Medico;
+import Users.Paciente;
 import Users.UsersData;
 
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
@@ -117,9 +120,13 @@ public class NavegacionAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_medicos.getSelectedIndex();
                 if (selectedIndex != -1) {
-                	UsersData.getInstance().eliminarMedico(selectedIndex);
-                	list_medicos = new JList<>(UsersData.getInstance().listaMedicosNombre());
-                	scrollPane_medicos.setViewportView(list_medicos);
+                	Medico m = UsersData.getInstance().listaMedicos().get(selectedIndex);
+                	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar al medico "+m.getNombre()+" "+m.getApellido()+"?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.YES_OPTION) {
+	                	UsersData.getInstance().eliminarMedico(selectedIndex);
+	                	list_medicos = new JList<>(UsersData.getInstance().listaMedicosNombre());
+	                	scrollPane_medicos.setViewportView(list_medicos);
+	                }
                 }
             }
         });
@@ -168,9 +175,13 @@ public class NavegacionAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_pacientes.getSelectedIndex();
                 if (selectedIndex != -1) {
-                	UsersData.getInstance().eliminarPaciente(selectedIndex);
-                	list_pacientes = new JList<>(UsersData.getInstance().listaPacientesNombre());
-            		scrollPane_pacientes.setViewportView(list_pacientes);
+                	Paciente p = UsersData.getInstance().listaPacientes().get(selectedIndex);
+                	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar al paciente "+p.getNombre()+" "+p.getApellido()+"?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.YES_OPTION) {
+	                	UsersData.getInstance().eliminarPaciente(selectedIndex);
+	                	list_pacientes = new JList<>(UsersData.getInstance().listaPacientesNombre());
+	            		scrollPane_pacientes.setViewportView(list_pacientes);
+	            	}
                 }
             }
         });
