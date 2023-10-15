@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
+import Users.Paciente;
 import Users.UsersData;
 
 import javax.swing.JTextField;
@@ -75,9 +76,10 @@ public class PacienteLoginFrame extends JFrame {
 		btn_login.setBounds(10, 123, 264, 23);
 		btn_login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(UsersData.getInstance().validCredentials(campo_usuario.getText(), String.valueOf(campo_contrasenia.getPassword()))) {
+            	Paciente p = UsersData.getInstance().credencialesValidasPaciente(campo_usuario.getText(), String.valueOf(campo_contrasenia.getPassword()));
+            	if(p!=null) {
             		try {
-            			NavegacionPaciente frame = new NavegacionPaciente();
+            			NavegacionPaciente frame = new NavegacionPaciente(p);
 						PacienteLoginFrame.this.dispose();
 						frame.setVisible(true);
 					} catch (Exception e1) {

@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Users.Medico;
 import Users.UsersData;
 
 @SuppressWarnings("serial")
@@ -29,7 +30,7 @@ public class NavegacionMedico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NavegacionMedico frame = new NavegacionMedico();
+					NavegacionMedico frame = new NavegacionMedico(UsersData.getInstance().listaMedicos().get(0));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +42,8 @@ public class NavegacionMedico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NavegacionMedico() {
+	public NavegacionMedico(Medico m) {
+		setTitle("Navegacion (medico)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 190, 245);
 		contentPane = new JPanel();

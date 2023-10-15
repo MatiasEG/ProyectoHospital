@@ -1,4 +1,4 @@
-package GUI_administradores;
+package GUI_pacientes;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ import Users.Paciente;
 import Users.UsersData;
 
 @SuppressWarnings("serial")
-public class ModificarPaciente extends JFrame {
+public class ModificarDatosBasicosPaciente extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel_alergias;
@@ -63,7 +63,7 @@ public class ModificarPaciente extends JFrame {
 					medicamentos.addElement("asado");
 					medicamentos.addElement("coca");
 					
-					ModificarPaciente frame = new ModificarPaciente(new Paciente("Pepe", "Segundo", "user_aps", "mail@mail.com", "pass", alergias, diagnosticos, tratamientos, medicamentos));
+					ModificarDatosBasicosPaciente frame = new ModificarDatosBasicosPaciente(UsersData.getInstance().listaPacientes().get(0));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,7 +75,7 @@ public class ModificarPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarPaciente(Paciente paciente) {
+	public ModificarDatosBasicosPaciente(Paciente paciente) {
 		DefaultListModel<String> alergiasAux = UsersData.getInstance().copyList(paciente.getAlergias());
 		DefaultListModel<String> diagnosticosAux = UsersData.getInstance().copyList(paciente.getDiagnosticos());
 		DefaultListModel<String> tratamientosAux = UsersData.getInstance().copyList(paciente.getTratamientos());
@@ -93,14 +93,12 @@ public class ModificarPaciente extends JFrame {
 		campo_nombre = new JTextField();
 		campo_nombre.setBounds(23, 39, 187, 20);
 		campo_nombre.setText(paciente.getNombre());
-		campo_nombre.setEditable(false);
 		contentPane.add(campo_nombre);
 		campo_nombre.setColumns(10);
 		
 		campo_apellido = new JTextField();
 		campo_apellido.setBounds(220, 39, 187, 20);
 		campo_apellido.setText(paciente.getApellido());
-		campo_apellido.setEditable(false);
 		contentPane.add(campo_apellido);
 		campo_apellido.setColumns(10);
 		
@@ -136,7 +134,7 @@ public class ModificarPaciente extends JFrame {
 		btn_cancelar.setBounds(318, 408, 89, 23);
 		btn_cancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	ModificarPaciente.this.dispose();
+            	ModificarDatosBasicosPaciente.this.dispose();
             }
         });
 		contentPane.add(btn_cancelar);
@@ -145,23 +143,22 @@ public class ModificarPaciente extends JFrame {
 		btn_guardar.setBounds(220, 408, 89, 23);
 		btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if(!campo_usuario.getText().equals(paciente.getUsuario()) || !campo_correo.getText().equals(paciente.getCorreo()) ||
-            			!alergiasAux.equals(paciente.getAlergias()) || !diagnosticosAux.equals(paciente.getDiagnosticos()) ||
-            			!tratamientosAux.equals(paciente.getTratamientos()) || !medicamentosAux.equals(paciente.getMedicamentos())) {
+            	if(!campo_usuario.getText().equals(paciente.getUsuario()) || !campo_correo.getText().equals(paciente.getCorreo())
+            			|| !campo_nombre.getText().equals(paciente.getNombre()) || !campo_apellido.getText().equals(paciente.getApellido())) {
 
             		if(camposCompletos()) {
             			if(correoValido(campo_correo.getText())) {
-	            			paciente.setUsuario(campo_usuario.getText());
-	        				paciente.setCorreo(campo_correo.getText());
-	        				paciente.setAlergias(alergiasAux);
-	        				paciente.setDiagnosticos(diagnosticosAux);
-	        				paciente.setTratamientos(tratamientosAux);
-	        				paciente.setMedicamentos(medicamentosAux);
-	        				JOptionPane.showMessageDialog(null, "Los datos del paciente se han actualizado correctamente.");
-	        				ModificarPaciente.this.dispose();
-	            		}else {
-	            			JOptionPane.showMessageDialog(null, "El correo no es valido.");
-	            		}
+                			paciente.setUsuario(campo_usuario.getText());
+            				paciente.setCorreo(campo_correo.getText());
+            				paciente.setAlergias(alergiasAux);
+            				paciente.setDiagnosticos(diagnosticosAux);
+            				paciente.setTratamientos(tratamientosAux);
+            				paciente.setMedicamentos(medicamentosAux);
+            				JOptionPane.showMessageDialog(null, "Los datos del paciente se han actualizado correctamente.");
+            				ModificarDatosBasicosPaciente.this.dispose();
+                		}else {
+                			JOptionPane.showMessageDialog(null, "El correo no es valido.");
+                		}
             		}else {
             			JOptionPane.showMessageDialog(null, "Complete todos los campos vacios.");
             		}
@@ -239,22 +236,6 @@ public class ModificarPaciente extends JFrame {
 		panel_alergias_3.add(scrollPane_medicamentos);
 		lista_medicamentos = new JList<>(listModelMedicamentos);
 		scrollPane_medicamentos.setViewportView(lista_medicamentos);
-		
-		JButton btn_vaciarFicha = new JButton("Vaciar ficha medica");
-		btn_vaciarFicha.setBounds(23, 408, 187, 23);
-		btn_vaciarFicha.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	listModelAlergias.removeAllElements();
-            	listModelTratamientos.removeAllElements();
-            	listModelDiagnosticos.removeAllElements();
-            	listModelMedicamentos.removeAllElements();
-            	//lista_alergias = new JList<>(listModelAlergias);
-            	//lista_tratamientos = new JList<>(listModelTratamientos);
-            	//lista_diagnosticos = new JList<>(listModelDiagnosticos);
-                //lista_medicamentos = new JList<>(listModelMedicamentos);
-            }
-        });
-		contentPane.add(btn_vaciarFicha);
 		
 	}
 	

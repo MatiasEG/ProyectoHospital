@@ -139,41 +139,36 @@ public class ModificarMedico extends JFrame {
             			|| campo_viernes.getText().equals(medico.getHorarios()[4].getRango())
             			|| campo_sabado.getText().equals(medico.getHorarios()[5].getRango())
             			|| campo_domingo.getText().equals(medico.getHorarios()[6].getRango())) {
-        			if(correoValido(campo_correo.getText())) {
-        				if(horariosValidos() && minutosValidos()) {
-        					Horario horarioLunes = new Horario(campo_lunes.getText(), campo_minutos.getText());
-        					Horario horarioMartes = new Horario(campo_martes.getText(), campo_minutos.getText());
-        					Horario horarioMiercoles = new Horario(campo_miercoles.getText(), campo_minutos.getText());
-        					Horario horarioJueves = new Horario(campo_jueves.getText(), campo_minutos.getText());
-        					Horario horarioViernes = new Horario(campo_viernes.getText(), campo_minutos.getText());
-        					Horario horarioSabado = new Horario(campo_sabado.getText(), campo_minutos.getText());
-        					Horario horarioDomingo = new Horario(campo_domingo.getText(), campo_minutos.getText());
-        					
-        					Horario[] horarios = {horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
-            				
-            				medico.setUsuario(campo_usuario.getText());
-            				medico.setCorreo(campo_correo.getText());
-            				medico.setHorarios(horarios);
-            				JOptionPane.showMessageDialog(null, "Los datos del medico se actualizaron correctamente.");
-            				ModificarMedico.this.dispose();
-        				}else {
-        					JOptionPane.showMessageDialog(null, "Revise los horarios y minutos de consulta.");
-        				}
-        			}else{
-        				JOptionPane.showMessageDialog(null, "El correo no es valido.");
-        			}
-            	}else{
-            		if(!campo_correo.getText().equals(medico.getCorreo())) {
+            		
+            		if(camposCompletos()) {
             			if(correoValido(campo_correo.getText())) {
-            				medico.setCorreo(campo_correo.getText());
-            				JOptionPane.showMessageDialog(null, "El correo se actualizo correctamente.");
-            				ModificarMedico.this.dispose();
+            				if(horariosValidos() && minutosValidos()) {
+            					Horario horarioLunes = new Horario(campo_lunes.getText(), campo_minutos.getText());
+            					Horario horarioMartes = new Horario(campo_martes.getText(), campo_minutos.getText());
+            					Horario horarioMiercoles = new Horario(campo_miercoles.getText(), campo_minutos.getText());
+            					Horario horarioJueves = new Horario(campo_jueves.getText(), campo_minutos.getText());
+            					Horario horarioViernes = new Horario(campo_viernes.getText(), campo_minutos.getText());
+            					Horario horarioSabado = new Horario(campo_sabado.getText(), campo_minutos.getText());
+            					Horario horarioDomingo = new Horario(campo_domingo.getText(), campo_minutos.getText());
+            					
+            					Horario[] horarios = {horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
+                				
+                				medico.setUsuario(campo_usuario.getText());
+                				medico.setCorreo(campo_correo.getText());
+                				medico.setHorarios(horarios);
+                				JOptionPane.showMessageDialog(null, "Los datos del medico se actualizaron correctamente.");
+                				ModificarMedico.this.dispose();
+            				}else {
+            					JOptionPane.showMessageDialog(null, "Revise los horarios y minutos de consulta.");
+            				}
             			}else{
             				JOptionPane.showMessageDialog(null, "El correo no es valido.");
             			}
-            		}else{
-        				JOptionPane.showMessageDialog(null, "No se realizaron cambios para guardar.");
+            		}else {
+            			JOptionPane.showMessageDialog(null, "Complete todos los campos vacios.");
             		}
+            	}else{
+        			JOptionPane.showMessageDialog(null, "No se realizaron cambios para guardar.");
             	}
             }
         });
@@ -318,7 +313,16 @@ public class ModificarMedico extends JFrame {
     }
     
     private boolean minutosValidos() {
-    	int minutos = Integer.parseInt(campo_minutos.getText());
+    	int minutos = 0;
+    	try {
+    		minutos = Integer.parseInt(campo_minutos.getText());
+    	}catch(NumberFormatException e) {
+    		return false;
+    	}
     	return (minutos>10 && minutos<30);
+    }
+    
+    private boolean camposCompletos() {
+    	return (!campo_nombre.getText().equals("") && !campo_apellido.getText().equals("") && !campo_usuario.getText().equals("") && !campo_correo.getText().equals(""));
     }
 }

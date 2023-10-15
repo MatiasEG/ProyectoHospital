@@ -125,13 +125,22 @@ public class UsersData {
 		return newList;
 	}
 	
-	public boolean validCredentials(String user, String pass) {
+	public Medico credencialesValidasMedico(String user, String pass) {
 		for(int i=0; i<medicos.size(); i++) {
 			if(medicos.get(i).getUsuario().equals(user) && medicos.get(i).getContrasenia().equals(pass)) {
-				return true;
+				return medicos.get(i);
 			}
 		}
-		return false;
+		return null;
+	}
+	
+	public Paciente credencialesValidasPaciente(String user, String pass) {
+		for(int i=0; i<pacientes.size(); i++) {
+			if(pacientes.get(i).getUsuario().equals(user) && pacientes.get(i).getContrasenia().equals(pass)) {
+				return pacientes.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public MaskFormatter getFormatoHorarios() {
