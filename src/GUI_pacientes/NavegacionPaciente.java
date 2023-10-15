@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import GUI_administradores.ModificarMedico;
 import Users.Paciente;
 import Users.UsersData;
 
