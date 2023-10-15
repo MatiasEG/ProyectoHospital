@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import GUI_administradores.ModificarMedico;
 import Users.Paciente;
 import Users.UsersData;
 
@@ -67,6 +68,15 @@ public class NavegacionPaciente extends JFrame {
 		
 		JButton btn_turnos = new JButton("Ver turnos disponibles");
 		btn_turnos.setBounds(0, 133, 150, 23);
+		btn_turnos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	int selectedIndex = list_medicos.getSelectedIndex();
+                if (selectedIndex != -1) {
+	            	SolicitarTurno frame = new SolicitarTurno(UsersData.getInstance().listaMedicos().get(selectedIndex), p);
+					frame.setVisible(true);
+				}
+            }
+        });
 		panel.add(btn_turnos);
 		
 		JLabel lblSolicitarTurnoCon = new JLabel("Solicitar turno con medico");

@@ -1,12 +1,15 @@
 package Users;
 
+import javax.swing.DefaultListModel;
+
 public class Horario {
 	private String rango;
 	private int turnosDisponibles;
-	
+	private DefaultListModel<Paciente> turnosAgendados;
+
 	public Horario(String rango, String minutos) {
 		this.rango = rango;
-		
+		turnosAgendados = new DefaultListModel<>();
 		actualizarTurnosDisponibles(minutos);
 	}
 
@@ -40,5 +43,10 @@ public class Horario {
 	    }
         
         turnosDisponibles = (secondNumber - firstNumber) * 60 / Integer.parseInt(minutos);
+	}
+	
+	public void agendarTurno(Paciente p) {
+		turnosDisponibles-=1;
+		turnosAgendados.addElement(p);
 	}
 }
