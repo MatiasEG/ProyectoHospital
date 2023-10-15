@@ -1,4 +1,4 @@
-package GUI_administradores;
+package GUI_medicos;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ import Users.Paciente;
 import Users.UsersData;
 
 @SuppressWarnings("serial")
-public class ModificarPaciente extends JFrame {
+public class ModificarFichaPaciente extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel_alergias;
@@ -29,21 +29,33 @@ public class ModificarPaciente extends JFrame {
 	private JTextField campo_apellido;
 	private JTextField campo_usuario;
 	private JTextField campo_correo;
+	private JTextField campo_alergia;
 	private JLabel label_alergias;
 	private JList<String> lista_alergias;
     private DefaultListModel<String> listModelAlergias;
     private DefaultListModel<String> listModelDiagnosticos;
     private DefaultListModel<String> listModelTratamientos;
     private DefaultListModel<String> listModelMedicamentos;
+    private JButton btn_agregarAlergia;
+    private JButton btn_eliminarAlergia;
     private JLabel label_tratamientos;
     private JPanel panel_alergias_1;
+    private JTextField campo_Tratamiento;
     private JList<String> lista_tratamientos;
+    private JButton btn_agregarTratamiento;
+    private JButton btn_eliminarTratamiento;
     private JLabel label_diagnosticos;
     private JPanel panel_alergias_2;
+    private JTextField campo_diagnostico;
     private JList<String> lista_diagnosticos;
+    private JButton btn_agregarDiagnostico;
+    private JButton btn_eliminarDiagnostico;
     private JLabel label_medicamentos;
     private JPanel panel_alergias_3;
+    private JTextField campo_medicamento;
     private JList<String> lista_medicamentos;
+    private JButton btn_agregarMedicamento;
+    private JButton btn_eliminarMedicamento;
 
 	/**
 	 * Launch the application.
@@ -63,7 +75,7 @@ public class ModificarPaciente extends JFrame {
 					medicamentos.addElement("asado");
 					medicamentos.addElement("coca");
 					
-					ModificarPaciente frame = new ModificarPaciente(new Paciente("Pepe", "Segundo", "user_aps", "mail@mail.com", "pass", alergias, diagnosticos, tratamientos, medicamentos));
+					ModificarFichaPaciente frame = new ModificarFichaPaciente(new Paciente("Pepe", "Segundo", "user_aps", "mail@mail.com", "pass", alergias, diagnosticos, tratamientos, medicamentos));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,13 +87,13 @@ public class ModificarPaciente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarPaciente(Paciente paciente) {
+	public ModificarFichaPaciente(Paciente paciente) {
 		DefaultListModel<String> alergiasAux = UsersData.getInstance().copyList(paciente.getAlergias());
 		DefaultListModel<String> diagnosticosAux = UsersData.getInstance().copyList(paciente.getDiagnosticos());
 		DefaultListModel<String> tratamientosAux = UsersData.getInstance().copyList(paciente.getTratamientos());
 		DefaultListModel<String> medicamentosAux = UsersData.getInstance().copyList(paciente.getMedicamentos());
 		
-		setTitle("Modificar datos paciente");
+		setTitle("Modificar ficha paciente");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 485);
 		contentPane = new JPanel();
@@ -119,12 +131,14 @@ public class ModificarPaciente extends JFrame {
 		campo_usuario = new JTextField();
 		campo_usuario.setColumns(10);
 		campo_usuario.setText(paciente.getUsuario());
+		campo_usuario.setEditable(false);
 		campo_usuario.setBounds(23, 83, 187, 20);
 		contentPane.add(campo_usuario);
 		
 		campo_correo = new JTextField();
 		campo_correo.setColumns(10);
 		campo_correo.setText(paciente.getCorreo());
+		campo_correo.setEditable(false);
 		campo_correo.setBounds(220, 83, 187, 20);
 		contentPane.add(campo_correo);
 		
@@ -136,7 +150,7 @@ public class ModificarPaciente extends JFrame {
 		btn_cancelar.setBounds(318, 408, 89, 23);
 		btn_cancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	ModificarPaciente.this.dispose();
+            	ModificarFichaPaciente.this.dispose();
             }
         });
 		contentPane.add(btn_cancelar);
@@ -157,7 +171,7 @@ public class ModificarPaciente extends JFrame {
         				paciente.setTratamientos(tratamientosAux);
         				paciente.setMedicamentos(medicamentosAux);
         				JOptionPane.showMessageDialog(null, "Los datos del paciente se han actualizado correctamente.");
-        				ModificarPaciente.this.dispose();
+        				ModificarFichaPaciente.this.dispose();
             		}else {
             			JOptionPane.showMessageDialog(null, "El correo no es valido.");
             		}
@@ -174,10 +188,40 @@ public class ModificarPaciente extends JFrame {
 		contentPane.add(panel_alergias);
 		panel_alergias.setLayout(null);
 		
+		campo_alergia = new JTextField();
+		campo_alergia.setBounds(0, 0, 187, 20);
+		panel_alergias.add(campo_alergia);
+		campo_alergia.setColumns(10);
+		
 		listModelAlergias = alergiasAux;
 		
+		btn_agregarAlergia = new JButton("Agregar");
+		btn_agregarAlergia.setBounds(0, 100, 89, 23);
+		btn_agregarAlergia.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String alergia = campo_alergia.getText().trim();
+                if (!alergia.isEmpty()) {
+                	listModelAlergias.addElement(alergia);
+                    campo_alergia.setText("");
+                }
+            }
+        });
+		panel_alergias.add(btn_agregarAlergia);
+		
+		btn_eliminarAlergia = new JButton("Eliminar");
+		btn_eliminarAlergia.setBounds(98, 100, 89, 23);
+		btn_eliminarAlergia.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = lista_alergias.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	listModelAlergias.remove(selectedIndex);
+                }
+            }
+        });
+		panel_alergias.add(btn_eliminarAlergia);
+		
 		JScrollPane scrollPane_alergias = new JScrollPane();
-		scrollPane_alergias.setBounds(0, 0, 187, 123);
+		scrollPane_alergias.setBounds(0, 22, 187, 78);
 		panel_alergias.add(scrollPane_alergias);
 		lista_alergias = new JList<>(listModelAlergias);
 		scrollPane_alergias.setViewportView(lista_alergias);
@@ -195,10 +239,40 @@ public class ModificarPaciente extends JFrame {
 		panel_alergias_1.setBounds(23, 274, 187, 123);
 		contentPane.add(panel_alergias_1);
 		
+		campo_Tratamiento = new JTextField();
+		campo_Tratamiento.setColumns(10);
+		campo_Tratamiento.setBounds(0, 0, 187, 20);
+		panel_alergias_1.add(campo_Tratamiento);
+		
         listModelTratamientos = tratamientosAux;
 		
+		btn_agregarTratamiento = new JButton("Agregar");
+		btn_agregarTratamiento.setBounds(0, 100, 89, 23);
+		btn_agregarTratamiento.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String tratamiento = campo_Tratamiento.getText().trim();
+                if (!tratamiento.isEmpty()) {
+                	listModelTratamientos.addElement(tratamiento);
+                    campo_Tratamiento.setText("");
+                }
+            }
+        });
+		panel_alergias_1.add(btn_agregarTratamiento);
+		
+		btn_eliminarTratamiento = new JButton("Eliminar");
+		btn_eliminarTratamiento.setBounds(98, 100, 89, 23);
+		btn_eliminarTratamiento.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = lista_tratamientos.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	listModelTratamientos.remove(selectedIndex);
+                }
+            }
+        });
+		panel_alergias_1.add(btn_eliminarTratamiento);
+		
 		JScrollPane scrollPane_tratamientos = new JScrollPane();
-		scrollPane_tratamientos.setBounds(0, 0, 187, 123);
+		scrollPane_tratamientos.setBounds(0, 21, 187, 78);
 		panel_alergias_1.add(scrollPane_tratamientos);
 		lista_tratamientos = new JList<>(listModelTratamientos);
 		scrollPane_tratamientos.setViewportView(lista_tratamientos);
@@ -212,10 +286,40 @@ public class ModificarPaciente extends JFrame {
 		panel_alergias_2.setBounds(220, 127, 187, 123);
 		contentPane.add(panel_alergias_2);
 		
+		campo_diagnostico = new JTextField();
+		campo_diagnostico.setColumns(10);
+		campo_diagnostico.setBounds(0, 0, 187, 20);
+		panel_alergias_2.add(campo_diagnostico);
+		
         listModelDiagnosticos = diagnosticosAux;
 		
+		btn_agregarDiagnostico = new JButton("Agregar");
+		btn_agregarDiagnostico.setBounds(0, 100, 89, 23);
+		btn_agregarDiagnostico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String diagnostico = campo_diagnostico.getText().trim();
+                if (!diagnostico.isEmpty()) {
+                	listModelDiagnosticos.addElement(diagnostico);
+                	campo_diagnostico.setText("");
+                }
+            }
+        });
+		panel_alergias_2.add(btn_agregarDiagnostico);
+		
+		btn_eliminarDiagnostico = new JButton("Eliminar");
+		btn_eliminarDiagnostico.setBounds(98, 100, 89, 23);
+		btn_eliminarDiagnostico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = lista_diagnosticos.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	listModelDiagnosticos.remove(selectedIndex);
+                }
+            }
+        });
+		panel_alergias_2.add(btn_eliminarDiagnostico);
+		
 		JScrollPane scrollPane_diagnosticos = new JScrollPane();
-		scrollPane_diagnosticos.setBounds(0, 0, 187, 123);
+		scrollPane_diagnosticos.setBounds(0, 21, 187, 78);
 		panel_alergias_2.add(scrollPane_diagnosticos);
 		lista_diagnosticos = new JList<>(listModelDiagnosticos);
 		scrollPane_diagnosticos.setViewportView(lista_diagnosticos);
@@ -229,13 +333,59 @@ public class ModificarPaciente extends JFrame {
 		panel_alergias_3.setBounds(220, 274, 187, 123);
 		contentPane.add(panel_alergias_3);
 		
+		campo_medicamento = new JTextField();
+		campo_medicamento.setColumns(10);
+		campo_medicamento.setBounds(0, 0, 187, 20);
+		panel_alergias_3.add(campo_medicamento);
+		
         listModelMedicamentos = medicamentosAux;
 		
+		btn_agregarMedicamento = new JButton("Agregar");
+		btn_agregarMedicamento.setBounds(0, 100, 89, 23);
+		btn_agregarMedicamento.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String medicamento = campo_medicamento.getText().trim();
+                if (!medicamento.isEmpty()) {
+                	listModelMedicamentos.addElement(medicamento);
+                    campo_medicamento.setText("");
+                }
+            }
+        });
+		panel_alergias_3.add(btn_agregarMedicamento);
+		
+		btn_eliminarMedicamento = new JButton("Eliminar");
+		btn_eliminarMedicamento.setBounds(98, 100, 89, 23);
+		btn_eliminarMedicamento.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = lista_medicamentos.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	listModelMedicamentos.remove(selectedIndex);
+                }
+            }
+        });
+		panel_alergias_3.add(btn_eliminarMedicamento);
+		
 		JScrollPane scrollPane_medicamentos = new JScrollPane();
-		scrollPane_medicamentos.setBounds(0, 0, 187, 123);
+		scrollPane_medicamentos.setBounds(0, 21, 187, 78);
 		panel_alergias_3.add(scrollPane_medicamentos);
 		lista_medicamentos = new JList<>(listModelMedicamentos);
 		scrollPane_medicamentos.setViewportView(lista_medicamentos);
+		
+		JButton btn_vaciarFicha = new JButton("Vaciar ficha medica");
+		btn_vaciarFicha.setBounds(23, 408, 187, 23);
+		btn_vaciarFicha.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	listModelAlergias.removeAllElements();
+            	listModelTratamientos.removeAllElements();
+            	listModelDiagnosticos.removeAllElements();
+            	listModelMedicamentos.removeAllElements();
+            	//lista_alergias = new JList<>(listModelAlergias);
+            	//lista_tratamientos = new JList<>(listModelTratamientos);
+            	//lista_diagnosticos = new JList<>(listModelDiagnosticos);
+                //lista_medicamentos = new JList<>(listModelMedicamentos);
+            }
+        });
+		contentPane.add(btn_vaciarFicha);
 		
 		
 		
@@ -248,5 +398,4 @@ public class ModificarPaciente extends JFrame {
         Matcher matcher = pattern.matcher(correo);
         return matcher.matches();
     }
-
 }
