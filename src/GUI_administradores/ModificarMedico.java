@@ -280,13 +280,17 @@ public class ModificarMedico extends JFrame {
     
     private boolean horarioDia(String horario) {
     	String[] parts = horario.split("-");
-
+    	
+    	if(parts[0].equals("00") && parts[1].equals("00")) {
+        	return true;
+        }
+    	
     	if (parts.length == 2) {
     	    try {
     	        int firstNumber = Integer.parseInt(parts[0]);
     	        int secondNumber = Integer.parseInt(parts[1]);
-
-    	        if (firstNumber >= 0 && firstNumber <= 24 && secondNumber >= 0 && secondNumber <= 24) {
+    	        
+	        	if (firstNumber >= 0 && firstNumber <= 24 && secondNumber >= 0 && secondNumber <= 24) {
     	            // Los números están en el rango válido (0-24)
     	            // Ahora puedes compararlos con otros valores int
     	        	if(firstNumber<secondNumber) {

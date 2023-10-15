@@ -285,7 +285,11 @@ public class RegistroMedico extends JFrame {
     
     private boolean horarioDia(String horario) {
     	String[] parts = horario.split("-");
-
+    	
+    	if(parts[0].equals("00") && parts[1].equals("00")) {
+        	return true;
+        }
+    	
     	if (parts.length == 2) {
     	    try {
     	        int firstNumber = Integer.parseInt(parts[0]);
