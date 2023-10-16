@@ -46,7 +46,16 @@ public class Horario {
 	}
 	
 	public void agendarTurno(Paciente p) {
-		turnosDisponibles-=1;
 		turnosAgendados.addElement(p);
+		turnosDisponibles-=1;
+	}
+	
+	public DefaultListModel<Paciente> getTurnosAgendados(){
+		return turnosAgendados;
+	}
+	
+	public void eliminarTurno(int i) {
+		turnosAgendados.remove(i);
+		turnosDisponibles+=1;
 	}
 }

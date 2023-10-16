@@ -45,7 +45,7 @@ public class NavegacionMedico extends JFrame {
 	public NavegacionMedico(Medico m) {
 		setTitle("Navegacion (medico)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 190, 245);
+		setBounds(100, 100, 190, 280);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -84,6 +84,9 @@ public class NavegacionMedico extends JFrame {
 		
 		list_pacientes = new JList<>(UsersData.getInstance().listaPacientesNombre());
 		scrollPane_pacientes.setViewportView(list_pacientes);
+		
+		JButton btn_citas = new JButton("Ver citas");
+		btn_citas.setBounds(14, 208, 150, 23);
+		contentPane.add(btn_citas);
 	}
-
 }

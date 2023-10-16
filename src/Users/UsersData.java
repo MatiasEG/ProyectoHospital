@@ -66,8 +66,23 @@ public class UsersData {
 		medicamentos.addElement("asado");
 		medicamentos.addElement("coca");
 		
-		pacientes.addElement(new Paciente("Esteban", "Kito", "bankito", "bankito@mail.com", "123", alergias, diagnosticos, tratamientos, medicamentos));
-		pacientes.addElement(new Paciente("Lola", "Mento", "lm", "lm@mail.com", "manaos", new DefaultListModel<>(), new DefaultListModel<>(), new DefaultListModel<>(), new DefaultListModel<>()));
+		Paciente p1 = new Paciente("Esteban", "Kito", "bankito", "bankito@mail.com", "123", alergias, diagnosticos, tratamientos, medicamentos);
+		Paciente p2 = new Paciente("Lola", "Mento", "lm", "lm@mail.com", "manaos", new DefaultListModel<>(), new DefaultListModel<>(), new DefaultListModel<>(), new DefaultListModel<>());
+		pacientes.addElement(p1);
+		pacientes.addElement(p2);
+		
+		// citas -----------------------------------------------------------------------------------------------------
+		horarioLunes.agendarTurno(p1);
+		horarioLunes.agendarTurno(p2);
+		
+		horarioMiercoles.agendarTurno(p1);
+		
+		horarioViernes.agendarTurno(p1);
+		
+		horarioSabado.agendarTurno(p2);
+		horarioSabado.agendarTurno(p2);
+		horarioSabado.agendarTurno(p2);
+
     }
     
     public static UsersData getInstance() {
@@ -167,5 +182,13 @@ public class UsersData {
 		}
 		
 		return formatter_minutos;
+	}
+	
+	public DefaultListModel<String> getNombresPacientes(DefaultListModel<Paciente> originalList) {
+		DefaultListModel<String> newList = new DefaultListModel<>();
+		for(int i=0; i<originalList.size(); i++) {
+			newList.addElement(originalList.getElementAt(i).getApellido()+", "+originalList.getElementAt(i).getNombre());
+		}
+		return newList;
 	}
 }
