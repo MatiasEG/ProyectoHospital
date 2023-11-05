@@ -99,4 +99,13 @@ public class Paciente {
 		turnosAgendados.get(dia).remove(turno);
 	}
 	
+	public void eliminarCitaMedico(int dia, Medico m) {
+		for(int i=0; i<turnosAgendados.get(dia).getSize(); i++) {
+			if(turnosAgendados.get(dia).get(i).getApellido().equals(m.getApellido()) && turnosAgendados.get(dia).get(i).getNombre().equals(m.getNombre())) {
+				turnosAgendados.get(dia).remove(i);
+				break;
+			}
+		}
+	}
+	
 }

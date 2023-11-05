@@ -59,11 +59,16 @@ public class Horario {
 		turnosDisponibles+=1;
 	}
 	
+	public Paciente getPaciente(int i) {
+		return turnosAgendados.get(i);
+	}
+	
 	public void eliminarTurnoPaciente(Paciente p) {
 		for(int i=0; i<turnosAgendados.getSize(); i++) {
 			if(turnosAgendados.get(i).getApellido().equals(p.getApellido()) && turnosAgendados.get(i).getNombre().equals(p.getNombre())) {
 				turnosAgendados.remove(i);
 				turnosDisponibles+=1;
+				break;
 			}
 		}
 	}

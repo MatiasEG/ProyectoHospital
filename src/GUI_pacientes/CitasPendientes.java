@@ -55,16 +55,6 @@ public class CitasPendientes extends JFrame {
 		 * Create the frame.
 		 */
 		public CitasPendientes(Paciente p) {
-			
-			System.out.println(p.getCitas(0));
-			System.out.println(p.getCitas(1));
-			System.out.println(p.getCitas(2));
-			System.out.println(p.getCitas(3));
-			System.out.println(p.getCitas(4));
-			System.out.println(p.getCitas(5));
-			System.out.println(p.getCitas(6));
-
-
 			setTitle("Citas registradas");
 			//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 1150, 280);

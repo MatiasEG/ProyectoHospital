@@ -89,7 +89,7 @@ public class NavegacionMedico extends JFrame {
 		btn_citas.setBounds(14, 208, 150, 23);
 		btn_citas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-        		VisualizadorDeCitas frame = new VisualizadorDeCitas(m);
+        		VisualizadorDeCitasMedico frame = new VisualizadorDeCitasMedico(m);
 				frame.setVisible(true);				
             }
         });

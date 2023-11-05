@@ -17,7 +17,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
-public class VisualizadorDeCitas extends JFrame {
+public class VisualizadorDeCitasMedico extends JFrame {
 
 	private JPanel contentPane;
 	private JList<String> list_lunes;
@@ -49,7 +49,7 @@ public class VisualizadorDeCitas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VisualizadorDeCitas frame = new VisualizadorDeCitas(UsersData.getInstance().listaMedicos().get(0));
+					VisualizadorDeCitasMedico frame = new VisualizadorDeCitasMedico(UsersData.getInstance().listaMedicos().get(0));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,7 +61,7 @@ public class VisualizadorDeCitas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VisualizadorDeCitas(Medico m) {
+	public VisualizadorDeCitasMedico(Medico m) {
 		setTitle("Citas registradas");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1150, 280);
@@ -88,6 +88,7 @@ public class VisualizadorDeCitas extends JFrame {
                 if (selectedIndex != -1) {
                 	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar la cita del lunes seleccionada?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
+                    	m.getHorarios()[0].getPaciente(selectedIndex).eliminarCitaMedico(0, m);
     					m.getHorarios()[0].eliminarTurno(selectedIndex);
     					list_lunes = new JList<String>(UsersData.getInstance().getNombresPacientes(m.getHorarios()[0].getTurnosAgendados()));
     					scrollPane_citasLunes.setViewportView(list_lunes);
@@ -122,6 +123,7 @@ public class VisualizadorDeCitas extends JFrame {
                 if (selectedIndex != -1) {
                 	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar la cita del martes seleccionada?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
+                    	m.getHorarios()[1].getPaciente(selectedIndex).eliminarCitaMedico(1, m);
     					m.getHorarios()[1].eliminarTurno(selectedIndex);
     					list_martes = new JList<String>(UsersData.getInstance().getNombresPacientes(m.getHorarios()[1].getTurnosAgendados()));
     					scrollPane_citasMartes.setViewportView(list_martes);
@@ -156,6 +158,7 @@ public class VisualizadorDeCitas extends JFrame {
                 if (selectedIndex != -1) {
                 	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar la cita del miercoles seleccionada?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
+                    	m.getHorarios()[2].getPaciente(selectedIndex).eliminarCitaMedico(2, m);
     					m.getHorarios()[2].eliminarTurno(selectedIndex);
     					list_miercoles = new JList<String>(UsersData.getInstance().getNombresPacientes(m.getHorarios()[2].getTurnosAgendados()));
     					scrollPane_citasMiercoles.setViewportView(list_miercoles);
@@ -190,6 +193,7 @@ public class VisualizadorDeCitas extends JFrame {
                 if (selectedIndex != -1) {
                 	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar la cita del jueves seleccionada?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
+                    	m.getHorarios()[3].getPaciente(selectedIndex).eliminarCitaMedico(3, m);
     					m.getHorarios()[3].eliminarTurno(selectedIndex);
     					list_jueves = new JList<String>(UsersData.getInstance().getNombresPacientes(m.getHorarios()[3].getTurnosAgendados()));
     					scrollPane_citasJueves.setViewportView(list_jueves);
@@ -224,6 +228,7 @@ public class VisualizadorDeCitas extends JFrame {
                 if (selectedIndex != -1) {
                 	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar la cita del viernes seleccionada?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
+                    	m.getHorarios()[4].getPaciente(selectedIndex).eliminarCitaMedico(4, m);
     					m.getHorarios()[4].eliminarTurno(selectedIndex);
     					list_viernes = new JList<String>(UsersData.getInstance().getNombresPacientes(m.getHorarios()[4].getTurnosAgendados()));
     					scrollPane_citasViernes.setViewportView(list_viernes);
@@ -258,6 +263,7 @@ public class VisualizadorDeCitas extends JFrame {
                 if (selectedIndex != -1) {
                 	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar la cita del sabado seleccionada?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
+                    	m.getHorarios()[5].getPaciente(selectedIndex).eliminarCitaMedico(5, m);
     					m.getHorarios()[5].eliminarTurno(selectedIndex);
     					list_sabado = new JList<String>(UsersData.getInstance().getNombresPacientes(m.getHorarios()[5].getTurnosAgendados()));
     					scrollPane_citasSabado.setViewportView(list_sabado);
@@ -292,6 +298,7 @@ public class VisualizadorDeCitas extends JFrame {
                 if (selectedIndex != -1) {
                 	int option = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar la cita del domingo seleccionada?", "Confirmación", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
+                    	m.getHorarios()[6].getPaciente(selectedIndex).eliminarCitaMedico(6, m);
     					m.getHorarios()[6].eliminarTurno(selectedIndex);
     					list_domingo = new JList<String>(UsersData.getInstance().getNombresPacientes(m.getHorarios()[6].getTurnosAgendados()));
     					scrollPane_citasDomingo.setViewportView(list_domingo);

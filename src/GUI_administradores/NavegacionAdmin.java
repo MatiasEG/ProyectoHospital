@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import GUI_medicos.VisualizadorDeCitasMedico;
+import GUI_pacientes.CitasPendientes;
 import Users.Medico;
 import Users.Paciente;
 import Users.UsersData;
@@ -50,7 +52,7 @@ public class NavegacionAdmin extends JFrame {
 	public NavegacionAdmin() {
 		setTitle("Navegacion (admin)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 300);
+		setBounds(100, 100, 350, 340);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -86,7 +88,7 @@ public class NavegacionAdmin extends JFrame {
 		contentPane.add(btn_registroPaciente);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 70, 150, 180);
+		panel.setBounds(10, 70, 150, 207);
 		contentPane.add(panel);
 		
 		JButton btn_editarMedico = new JButton("Editar datos");
@@ -114,8 +116,23 @@ public class NavegacionAdmin extends JFrame {
 		list_medicos = new JList<>(UsersData.getInstance().listaMedicosNombre());
 		scrollPane_medicos.setViewportView(list_medicos);
 		
+		JButton btn_verCitasMedico = new JButton("Ver citas");
+		btn_verCitasMedico.setBounds(0, 157, 150, 23);
+		btn_verCitasMedico.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = list_medicos.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	Medico m = UsersData.getInstance().listaMedicos().get(selectedIndex);
+                	VisualizadorDeCitasMedico frame = new VisualizadorDeCitasMedico(m);
+    				frame.setVisible(true);
+                }
+            }
+        });
+		panel.add(btn_verCitasMedico);
+		
 		JButton btn_eliminarMedico = new JButton("Eliminar");
-		btn_eliminarMedico.setBounds(0, 157, 150, 23);
+		btn_eliminarMedico.setBounds(0, 183, 150, 23);
+		panel.add(btn_eliminarMedico);
 		btn_eliminarMedico.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_medicos.getSelectedIndex();
@@ -130,7 +147,6 @@ public class NavegacionAdmin extends JFrame {
                 }
             }
         });
-		panel.add(btn_eliminarMedico);
 		
 		JLabel label_medicosRegistrados = new JLabel("Medicos registrados");
 		label_medicosRegistrados.setBounds(10, 45, 150, 14);
@@ -141,7 +157,7 @@ public class NavegacionAdmin extends JFrame {
 		contentPane.add(label_pacientesRegistrados);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(174, 70, 150, 180);
+		panel_1.setBounds(174, 70, 150, 207);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -170,7 +186,7 @@ public class NavegacionAdmin extends JFrame {
 		scrollPane_pacientes.setViewportView(list_pacientes);
 		
 		JButton btn_eliminarPaciente = new JButton("Eliminar");
-		btn_eliminarPaciente.setBounds(0, 157, 150, 23);
+		btn_eliminarPaciente.setBounds(0, 183, 150, 23);
 		btn_eliminarPaciente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = list_pacientes.getSelectedIndex();
@@ -186,6 +202,20 @@ public class NavegacionAdmin extends JFrame {
             }
         });
 		panel_1.add(btn_eliminarPaciente);
+		
+		JButton btn_verCitasPaciente = new JButton("Ver citas");
+		btn_verCitasPaciente.setBounds(0, 157, 150, 23);
+		btn_verCitasPaciente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = list_pacientes.getSelectedIndex();
+                if (selectedIndex != -1) {
+                	Paciente p = UsersData.getInstance().listaPacientes().get(selectedIndex);
+                	CitasPendientes frame = new CitasPendientes(p);
+    				frame.setVisible(true);
+                }
+            }
+        });
+		panel_1.add(btn_verCitasPaciente);
 	}
 
 	public static void updateLists() {
