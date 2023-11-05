@@ -23,7 +23,8 @@ public class UsersData {
 		Horario horarioSabado = new Horario("09-15", "15");
 		Horario horarioDomingo = new Horario("09-15", "15");
 		Horario[] horario = new Horario[]{horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
-		medicos.addElement(new Medico("Elton", "Tito", "titon", "titon@mail.com", "123", horario, "15"));
+		Medico m = new Medico("Elton", "Tito", "titon", "titon@mail.com", "123", horario, "15");
+		medicos.addElement(m);
 		
 		Horario horarioLunes1 = new Horario("09-15", "15");
 		Horario horarioMartes1 = new Horario("09-15", "15");
@@ -33,7 +34,8 @@ public class UsersData {
 		Horario horarioSabado1 = new Horario("09-15", "15");
 		Horario horarioDomingo1 = new Horario("09-15", "15");
 		Horario[] horario1 = new Horario[]{horarioLunes1, horarioMartes1, horarioMiercoles1, horarioJueves1, horarioViernes1, horarioSabado1, horarioDomingo1};
-		medicos.addElement(new Medico("Aitor", "Tilla", "aitor", "aitortilla@mail.com", "asd", horario1, "20"));
+		Medico m1 = new Medico("Aitor", "Tilla", "aitor", "aitortilla@mail.com", "asd", horario1, "20");
+		medicos.addElement(m1);
 		
 		Horario horarioLunes2 = new Horario("09-15", "15");
 		Horario horarioMartes2 = new Horario("09-15", "15");
@@ -43,7 +45,8 @@ public class UsersData {
 		Horario horarioSabado2 = new Horario("09-15", "15");
 		Horario horarioDomingo2 = new Horario("09-15", "15");
 		Horario[] horario2 = new Horario[]{horarioLunes2, horarioMartes2, horarioMiercoles2, horarioJueves2, horarioViernes2, horarioSabado2, horarioDomingo2};
-		medicos.addElement(new Medico("Armando Esteban", "Kito", "kitoarmando", "esteban.kito@mail.com", "pass", horario2, "25"));
+		Medico m2 = new Medico("Armando Esteban", "Kito", "kitoarmando", "esteban.kito@mail.com", "pass", horario2, "25");
+		medicos.addElement(m2);
 		
 		Horario horarioLunes3 = new Horario("09-15", "15");
 		Horario horarioMartes3 = new Horario("09-15", "15");
@@ -53,7 +56,8 @@ public class UsersData {
 		Horario horarioSabado3 = new Horario("09-15", "15");
 		Horario horarioDomingo3 = new Horario("09-15", "15");
 		Horario[] horario3 = new Horario[]{horarioLunes3, horarioMartes3, horarioMiercoles3, horarioJueves3, horarioViernes3, horarioSabado3, horarioDomingo3};
-		medicos.addElement(new Medico("Jacky", "Sieras", "sieras", "jackys@mail.com", "doc123", horario3, "10"));
+		Medico m3 = new Medico("Jacky", "Sieras", "sieras", "jackys@mail.com", "doc123", horario3, "10");
+		medicos.addElement(m3);
 		
 		// pacientes -----------------------------------------------------------------------------------------------------
 		DefaultListModel<String> alergias = new DefaultListModel<>();
@@ -73,16 +77,25 @@ public class UsersData {
 		
 		// citas -----------------------------------------------------------------------------------------------------
 		horarioLunes.agendarTurno(p1);
+		p1.addCita(0, m);
+		
 		horarioLunes.agendarTurno(p2);
+		p2.addCita(0, m);
 		
 		horarioMiercoles.agendarTurno(p1);
+		p1.addCita(2, m);
 		
 		horarioViernes.agendarTurno(p1);
+		p1.addCita(4, m);
 		
 		horarioSabado.agendarTurno(p2);
+		p2.addCita(5, m);
+		
 		horarioSabado.agendarTurno(p2);
+		p2.addCita(5, m);
+		
 		horarioSabado.agendarTurno(p2);
-
+		p2.addCita(5, m);
     }
     
     public static UsersData getInstance() {
@@ -185,6 +198,14 @@ public class UsersData {
 	}
 	
 	public DefaultListModel<String> getNombresPacientes(DefaultListModel<Paciente> originalList) {
+		DefaultListModel<String> newList = new DefaultListModel<>();
+		for(int i=0; i<originalList.size(); i++) {
+			newList.addElement(originalList.getElementAt(i).getApellido()+", "+originalList.getElementAt(i).getNombre());
+		}
+		return newList;
+	}
+	
+	public DefaultListModel<String> getNombresMedicos(DefaultListModel<Medico> originalList) {
 		DefaultListModel<String> newList = new DefaultListModel<>();
 		for(int i=0; i<originalList.size(); i++) {
 			newList.addElement(originalList.getElementAt(i).getApellido()+", "+originalList.getElementAt(i).getNombre());

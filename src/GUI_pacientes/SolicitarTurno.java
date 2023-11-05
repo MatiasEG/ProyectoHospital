@@ -107,6 +107,7 @@ public class SolicitarTurno extends JFrame {
                     if (option == JOptionPane.YES_OPTION) {
                     	int dia = getDia(txt);
                     	m.getHorarios()[dia].agendarTurno(p);
+                    	p.addCita(dia, m);
                     	SolicitarTurno.this.dispose();
                     }
             	}else {

@@ -101,6 +101,12 @@ public class NavegacionPaciente extends JFrame {
 		
 		JButton btn_citas = new JButton("Ver citas pendientes");
 		btn_citas.setBounds(170, 101, 150, 23);
+		btn_citas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	CitasPendientes frame = new CitasPendientes(p);
+				frame.setVisible(true);
+            }
+        });
 		contentPane.add(btn_citas);
 	}
 }
