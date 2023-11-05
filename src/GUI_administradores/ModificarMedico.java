@@ -45,16 +45,7 @@ public class ModificarMedico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Horario horarioLunes = new Horario("09-15", "15");
-					Horario horarioMartes = new Horario("09-15", "15");
-					Horario horarioMiercoles = new Horario("09-15", "15");
-					Horario horarioJueves = new Horario("09-15", "15");
-					Horario horarioViernes = new Horario("09-15", "15");
-					Horario horarioSabado = new Horario("09-15", "15");
-					Horario horarioDomingo = new Horario("09-15", "15");
-					Horario[] horario = new Horario[]{horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
-					Medico m = new Medico("Elton", "Tito", "titon", "titon@mail.com", "123", horario, "15");
-					ModificarMedico frame = new ModificarMedico(m);
+					ModificarMedico frame = new ModificarMedico(UsersData.getInstance().listaMedicos().get(0));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -132,30 +123,40 @@ public class ModificarMedico extends JFrame {
 		btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	if(!campo_usuario.getText().equals(medico.getUsuario()) || !campo_correo.getText().equals(medico.getCorreo())
-            			|| campo_lunes.getText().equals(medico.getHorarios()[0].getRango())
-            			|| campo_martes.getText().equals(medico.getHorarios()[1].getRango())
-            			|| campo_miercoles.getText().equals(medico.getHorarios()[2].getRango())
-            			|| campo_jueves.getText().equals(medico.getHorarios()[3].getRango())
-            			|| campo_viernes.getText().equals(medico.getHorarios()[4].getRango())
-            			|| campo_sabado.getText().equals(medico.getHorarios()[5].getRango())
-            			|| campo_domingo.getText().equals(medico.getHorarios()[6].getRango())) {
+            			|| !campo_lunes.getText().equals(medico.getHorarios()[0].getRango())
+            			|| !campo_martes.getText().equals(medico.getHorarios()[1].getRango())
+            			|| !campo_miercoles.getText().equals(medico.getHorarios()[2].getRango())
+            			|| !campo_jueves.getText().equals(medico.getHorarios()[3].getRango())
+            			|| !campo_viernes.getText().equals(medico.getHorarios()[4].getRango())
+            			|| !campo_sabado.getText().equals(medico.getHorarios()[5].getRango())
+            			|| !campo_domingo.getText().equals(medico.getHorarios()[6].getRango())) {
             		
             		if(camposCompletos()) {
             			if(correoValido(campo_correo.getText())) {
             				if(horariosValidos() && minutosValidos()) {
-            					Horario horarioLunes = new Horario(campo_lunes.getText(), campo_minutos.getText());
-            					Horario horarioMartes = new Horario(campo_martes.getText(), campo_minutos.getText());
-            					Horario horarioMiercoles = new Horario(campo_miercoles.getText(), campo_minutos.getText());
-            					Horario horarioJueves = new Horario(campo_jueves.getText(), campo_minutos.getText());
-            					Horario horarioViernes = new Horario(campo_viernes.getText(), campo_minutos.getText());
-            					Horario horarioSabado = new Horario(campo_sabado.getText(), campo_minutos.getText());
-            					Horario horarioDomingo = new Horario(campo_domingo.getText(), campo_minutos.getText());
+            					medico.getHorarios()[0].setRango(campo_lunes.getText());
+            					medico.getHorarios()[0].actualizarTurnosDisponibles(campo_minutos.getText());
             					
-            					Horario[] horarios = {horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
-                				
+            					medico.getHorarios()[1].setRango(campo_martes.getText());
+            					medico.getHorarios()[1].actualizarTurnosDisponibles(campo_minutos.getText());
+            					
+            					medico.getHorarios()[2].setRango(campo_miercoles.getText());
+            					medico.getHorarios()[2].actualizarTurnosDisponibles(campo_minutos.getText());
+            					
+            					medico.getHorarios()[3].setRango(campo_jueves.getText());
+            					medico.getHorarios()[3].actualizarTurnosDisponibles(campo_minutos.getText());
+            					
+            					medico.getHorarios()[4].setRango(campo_viernes.getText());
+            					medico.getHorarios()[4].actualizarTurnosDisponibles(campo_minutos.getText());
+            					
+            					medico.getHorarios()[5].setRango(campo_sabado.getText());
+            					medico.getHorarios()[5].actualizarTurnosDisponibles(campo_minutos.getText());
+            					
+            					medico.getHorarios()[6].setRango(campo_domingo.getText());
+            					medico.getHorarios()[6].actualizarTurnosDisponibles(campo_minutos.getText());
+            					                				
                 				medico.setUsuario(campo_usuario.getText());
                 				medico.setCorreo(campo_correo.getText());
-                				medico.setHorarios(horarios);
                 				JOptionPane.showMessageDialog(null, "Los datos del medico se actualizaron correctamente.");
                 				ModificarMedico.this.dispose();
             				}else {

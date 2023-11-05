@@ -15,49 +15,56 @@ public class UsersData {
 		pacientes = new DefaultListModel<>();
 
 		// medicos -------------------------------------------------------------------------------------------------------
-		Horario horarioLunes = new Horario("09-15", "15");
-		Horario horarioMartes = new Horario("09-15", "15");
-		Horario horarioMiercoles = new Horario("09-15", "15");
-		Horario horarioJueves = new Horario("09-15", "15");
-		Horario horarioViernes = new Horario("09-15", "15");
-		Horario horarioSabado = new Horario("09-15", "15");
-		Horario horarioDomingo = new Horario("09-15", "15");
+		Horario horarioLunes = new Horario("09-15", "15", 0);
+		Horario horarioMartes = new Horario("09-15", "15", 1);
+		Horario horarioMiercoles = new Horario("09-15", "15", 2);
+		Horario horarioJueves = new Horario("09-15", "15", 3);
+		Horario horarioViernes = new Horario("09-15", "15", 4);
+		Horario horarioSabado = new Horario("09-15", "15", 5);
+		Horario horarioDomingo = new Horario("09-15", "15", 6);
 		Horario[] horario = new Horario[]{horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
 		Medico m = new Medico("Elton", "Tito", "titon", "titon@mail.com", "123", horario, "15");
 		medicos.addElement(m);
 		
-		Horario horarioLunes1 = new Horario("09-15", "15");
-		Horario horarioMartes1 = new Horario("09-15", "15");
-		Horario horarioMiercoles1 = new Horario("09-15", "15");
-		Horario horarioJueves1 = new Horario("09-15", "15");
-		Horario horarioViernes1 = new Horario("09-15", "15");
-		Horario horarioSabado1 = new Horario("09-15", "15");
-		Horario horarioDomingo1 = new Horario("09-15", "15");
+		Horario horarioLunes1 = new Horario("09-15", "15", 0);
+		Horario horarioMartes1 = new Horario("09-15", "15", 1);
+		Horario horarioMiercoles1 = new Horario("09-15", "15", 2);
+		Horario horarioJueves1 = new Horario("09-15", "15", 3);
+		Horario horarioViernes1 = new Horario("09-15", "15", 4);
+		Horario horarioSabado1 = new Horario("09-15", "15", 5);
+		Horario horarioDomingo1 = new Horario("09-15", "15", 6);
 		Horario[] horario1 = new Horario[]{horarioLunes1, horarioMartes1, horarioMiercoles1, horarioJueves1, horarioViernes1, horarioSabado1, horarioDomingo1};
 		Medico m1 = new Medico("Aitor", "Tilla", "aitor", "aitortilla@mail.com", "asd", horario1, "20");
 		medicos.addElement(m1);
 		
-		Horario horarioLunes2 = new Horario("09-15", "15");
-		Horario horarioMartes2 = new Horario("09-15", "15");
-		Horario horarioMiercoles2 = new Horario("09-15", "15");
-		Horario horarioJueves2 = new Horario("09-15", "15");
-		Horario horarioViernes2 = new Horario("09-15", "15");
-		Horario horarioSabado2 = new Horario("09-15", "15");
-		Horario horarioDomingo2 = new Horario("09-15", "15");
+		Horario horarioLunes2 = new Horario("09-15", "15", 0);
+		Horario horarioMartes2 = new Horario("09-15", "15", 1);
+		Horario horarioMiercoles2 = new Horario("09-15", "15", 2);
+		Horario horarioJueves2 = new Horario("09-15", "15", 3);
+		Horario horarioViernes2 = new Horario("09-15", "15", 4);
+		Horario horarioSabado2 = new Horario("09-15", "15", 5);
+		Horario horarioDomingo2 = new Horario("09-15", "15", 6);
 		Horario[] horario2 = new Horario[]{horarioLunes2, horarioMartes2, horarioMiercoles2, horarioJueves2, horarioViernes2, horarioSabado2, horarioDomingo2};
 		Medico m2 = new Medico("Armando Esteban", "Kito", "kitoarmando", "esteban.kito@mail.com", "pass", horario2, "25");
 		medicos.addElement(m2);
 		
-		Horario horarioLunes3 = new Horario("09-15", "15");
-		Horario horarioMartes3 = new Horario("09-15", "15");
-		Horario horarioMiercoles3 = new Horario("09-15", "15");
-		Horario horarioJueves3 = new Horario("09-15", "15");
-		Horario horarioViernes3 = new Horario("09-15", "15");
-		Horario horarioSabado3 = new Horario("09-15", "15");
-		Horario horarioDomingo3 = new Horario("09-15", "15");
+		Horario horarioLunes3 = new Horario("09-15", "15", 0);
+		Horario horarioMartes3 = new Horario("09-15", "15", 1);
+		Horario horarioMiercoles3 = new Horario("09-15", "15", 2);
+		Horario horarioJueves3 = new Horario("09-15", "15", 3);
+		Horario horarioViernes3 = new Horario("09-15", "15", 4);
+		Horario horarioSabado3 = new Horario("09-15", "15", 5);
+		Horario horarioDomingo3 = new Horario("09-15", "15", 6);
 		Horario[] horario3 = new Horario[]{horarioLunes3, horarioMartes3, horarioMiercoles3, horarioJueves3, horarioViernes3, horarioSabado3, horarioDomingo3};
 		Medico m3 = new Medico("Jacky", "Sieras", "sieras", "jackys@mail.com", "doc123", horario3, "10");
 		medicos.addElement(m3);
+		
+		for(int i=0; i<7; i++) {
+			horario[i].setMedico(m);
+			horario1[i].setMedico(m1);
+			horario2[i].setMedico(m2);
+			horario3[i].setMedico(m3);
+		}
 		
 		// pacientes -----------------------------------------------------------------------------------------------------
 		DefaultListModel<String> alergias = new DefaultListModel<>();

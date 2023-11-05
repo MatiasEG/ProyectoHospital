@@ -6,13 +6,21 @@ public class Horario {
 	private String rango;
 	private int turnosDisponibles;
 	private DefaultListModel<Paciente> turnosAgendados;
+	private Medico m;
+	private int dia;
 
-	public Horario(String rango, String minutos) {
+	public Horario(String rango, String minutos, int dia) {
 		this.rango = rango;
 		turnosAgendados = new DefaultListModel<>();
 		actualizarTurnosDisponibles(minutos);
+		m = null;
+		this.dia = dia;
 	}
 
+	public void setMedico(Medico m) {
+		this.m = m;
+	}
+	
 	public String getRango() {
 		return rango;
 	}
@@ -43,6 +51,14 @@ public class Horario {
 	    }
         
         turnosDisponibles = (secondNumber - firstNumber) * 60 / Integer.parseInt(minutos);
+        
+        if(m!= null && turnosAgendados.getSize() > turnosDisponibles) {
+        	int eliminar = turnosDisponibles - turnosAgendados.getSize();
+        	for(int i = turnosAgendados.getSize()-1; i>=0 && eliminar!=0; i--) {
+        		turnosAgendados.get(i).eliminarCitaMedico(dia, m);
+        		turnosAgendados.remove(i);
+        	}
+        }
 	}
 	
 	public void agendarTurno(Paciente p) {

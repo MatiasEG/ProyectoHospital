@@ -141,13 +141,13 @@ public class RegistroMedico extends JFrame {
             		if(correoValido()) {
             			if(campo_contrasenia.getText().equals(campo_confirme_contrasenia.getText())) {
             				if(horariosValidos() && minutosValidos()) {
-            					Horario horarioLunes = new Horario(campo_lunes.getText(), campo_minutos.getText());
-            					Horario horarioMartes = new Horario(campo_martes.getText(), campo_minutos.getText());
-            					Horario horarioMiercoles = new Horario(campo_miercoles.getText(), campo_minutos.getText());
-            					Horario horarioJueves = new Horario(campo_jueves.getText(), campo_minutos.getText());
-            					Horario horarioViernes = new Horario(campo_viernes.getText(), campo_minutos.getText());
-            					Horario horarioSabado = new Horario(campo_sabado.getText(), campo_minutos.getText());
-            					Horario horarioDomingo = new Horario(campo_domingo.getText(), campo_minutos.getText());
+            					Horario horarioLunes = new Horario(campo_lunes.getText(), campo_minutos.getText(), 0);
+            					Horario horarioMartes = new Horario(campo_martes.getText(), campo_minutos.getText(), 1);
+            					Horario horarioMiercoles = new Horario(campo_miercoles.getText(), campo_minutos.getText(), 2);
+            					Horario horarioJueves = new Horario(campo_jueves.getText(), campo_minutos.getText(), 3);
+            					Horario horarioViernes = new Horario(campo_viernes.getText(), campo_minutos.getText(), 4);
+            					Horario horarioSabado = new Horario(campo_sabado.getText(), campo_minutos.getText(), 5);
+            					Horario horarioDomingo = new Horario(campo_domingo.getText(), campo_minutos.getText(), 6);
             					
             					Horario[] horarios = {horarioLunes, horarioMartes, horarioMiercoles, horarioJueves, horarioViernes, horarioSabado, horarioDomingo};
 	            				JOptionPane.showMessageDialog(null, "Medico registrado exitosamente!");
